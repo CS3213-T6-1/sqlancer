@@ -1,7 +1,6 @@
 package sqlancer.postgres.ast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import sqlancer.Randomly;
@@ -14,28 +13,13 @@ import sqlancer.postgres.gen.PostgresExpressionGenerator;
 
 public class PostgresJoin implements PostgresExpression, Join<PostgresExpression, PostgresTable, PostgresColumn> {
 
-    public enum PostgresJoinType {
-        INNER, LEFT, RIGHT, FULL, CROSS;
-
-        public static PostgresJoinType getRandom() {
-            return Randomly.fromOptions(values());
-        }
-
-        public static PostgresJoinType getRandomExcept(PostgresJoinType... exclude) {
-            PostgresJoinType[] values = Arrays.stream(values()).filter(m -> !Arrays.asList(exclude).contains(m))
-                    .toArray(PostgresJoinType[]::new);
-            return Randomly.fromOptions(values);
-        }
-
-    }
-
     private final PostgresExpression tableReference;
     private PostgresExpression onClause;
-    private PostgresJoinType type;
+    private Join.Type type;
     private final PostgresExpression leftTable;
     private final PostgresExpression rightTable;
 
-    public PostgresJoin(PostgresExpression tableReference, PostgresExpression onClause, PostgresJoinType type) {
+    public PostgresJoin(PostgresExpression tableReference, PostgresExpression onClause, Join.Type type) {
         this.tableReference = tableReference;
         this.onClause = onClause;
         this.type = type;
@@ -43,7 +27,7 @@ public class PostgresJoin implements PostgresExpression, Join<PostgresExpression
         this.rightTable = null;
     }
 
-    public PostgresJoin(PostgresExpression leftTable, PostgresExpression rightTable, PostgresJoinType joinType,
+    public PostgresJoin(PostgresExpression leftTable, PostgresExpression rightTable, Join.Type joinType,
             PostgresExpression whereCondition) {
         this.leftTable = leftTable;
         this.rightTable = rightTable;
@@ -52,9 +36,9 @@ public class PostgresJoin implements PostgresExpression, Join<PostgresExpression
         this.tableReference = null;
     }
 
-    public static PostgresJoin createJoin(PostgresExpression left, PostgresExpression right, PostgresJoinType type,
+    public static PostgresJoin createJoin(PostgresExpression left, PostgresExpression right, Join.Type type,
             PostgresExpression onClause) {
-        if (type == PostgresJoinType.CROSS) {
+        if (type == Join.Type.CROSS) {
             return new PostgresJoin(left, right, type, null);
         } else {
             return new PostgresJoin(left, right, type, onClause);
@@ -73,7 +57,7 @@ public class PostgresJoin implements PostgresExpression, Join<PostgresExpression
             columns.addAll(left.getTable().getColumns());
             columns.addAll(right.getTable().getColumns());
             PostgresExpressionGenerator joinGen = new PostgresExpressionGenerator(globalState).setColumns(columns);
-            joinExpressions.add(PostgresJoin.createJoin(left, right, PostgresJoinType.getRandom(),
+            joinExpressions.add(PostgresJoin.createJoin(left, right, Join.Type.getRandom(),
                     joinGen.generateExpression(0, PostgresDataType.BOOLEAN)));
         }
         return joinExpressions;
@@ -84,7 +68,7 @@ public class PostgresJoin implements PostgresExpression, Join<PostgresExpression
         this.onClause = clause;
     }
 
-    public void setType(PostgresJoinType type) {
+    public void setType(Join.Type type) {
         this.type = type;
     }
 
@@ -104,7 +88,7 @@ public class PostgresJoin implements PostgresExpression, Join<PostgresExpression
         return onClause;
     }
 
-    public PostgresJoinType getType() {
+    public Join.Type getType() {
         return type;
     }
 

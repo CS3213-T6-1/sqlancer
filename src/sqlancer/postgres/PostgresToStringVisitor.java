@@ -18,7 +18,6 @@ import sqlancer.postgres.ast.PostgresExpression;
 import sqlancer.postgres.ast.PostgresFunction;
 import sqlancer.postgres.ast.PostgresInOperation;
 import sqlancer.postgres.ast.PostgresJoin;
-import sqlancer.postgres.ast.PostgresJoin.PostgresJoinType;
 import sqlancer.postgres.ast.PostgresLikeOperation;
 import sqlancer.postgres.ast.PostgresOrderByTerm;
 import sqlancer.postgres.ast.PostgresPOSIXRegularExpression;
@@ -44,37 +43,6 @@ public final class PostgresToStringVisitor
         for (PostgresJoin join : select.getJoinClauses()) {
             visitJoinClause(join);
         }
-    }
-
-    @Override
-    protected void visitJoinType(PostgresJoin join) {
-        switch (join.getType()) {
-        case INNER:
-            if (Randomly.getBoolean()) {
-                sb.append("INNER ");
-            }
-            sb.append("JOIN");
-            break;
-        case LEFT:
-            sb.append("LEFT OUTER JOIN");
-            break;
-        case RIGHT:
-            sb.append("RIGHT OUTER JOIN");
-            break;
-        case FULL:
-            sb.append("FULL OUTER JOIN");
-            break;
-        case CROSS:
-            sb.append("CROSS JOIN");
-            break;
-        default:
-            throw new AssertionError(join.getType());
-        }
-    }
-
-    @Override
-    protected boolean shouldVisitOnClause(PostgresJoin join) {
-        return join.getType() != PostgresJoinType.CROSS;
     }
 
     @Override
@@ -233,11 +201,6 @@ public final class PostgresToStringVisitor
             break;
         case BIT:
             sb.append("BIT");
-            // if (Randomly.getBoolean()) {
-            // sb.append("(");
-            // sb.append(Randomly.getNotCachedInteger(1, 100));
-            // sb.append(")");
-            // }
             break;
         default:
             throw new AssertionError(cast.getType());
