@@ -20,6 +20,7 @@ import sqlancer.cnosdb.ast.CnosDBSelect;
 import sqlancer.cnosdb.ast.CnosDBSelect.CnosDBFromTable;
 import sqlancer.cnosdb.ast.CnosDBSelect.CnosDBSubquery;
 import sqlancer.cnosdb.ast.CnosDBSimilarTo;
+import sqlancer.common.ast.newast.Join;
 import sqlancer.common.visitor.BinaryOperation;
 import sqlancer.common.visitor.SelectToStringVisitor;
 
@@ -40,25 +41,10 @@ public final class CnosDBToStringVisitor extends SelectToStringVisitor<CnosDBExp
 
     @Override
     protected void visitJoinType(CnosDBJoin join) {
-        switch (join.getType()) {
-        case INNER:
-            if (Randomly.getBoolean()) {
-                sb.append("INNER ");
-            }
-            sb.append("JOIN");
-            break;
-        case LEFT:
-            sb.append("LEFT OUTER JOIN");
-            break;
-        case RIGHT:
-            sb.append("RIGHT OUTER JOIN");
-            break;
-        case FULL:
-            sb.append("FULL OUTER JOIN");
-            break;
-        default:
+        if (join.getType() == Join.Type.CROSS) {
             throw new AssertionError(join.getType());
         }
+        super.visitJoinType(join);
     }
 
     @Override
