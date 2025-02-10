@@ -56,9 +56,6 @@ public final class CnosDBToStringVisitor extends SelectToStringVisitor<CnosDBExp
         case FULL:
             sb.append("FULL OUTER JOIN");
             break;
-        // case CROSS:
-        // sb.append("CROSS JOIN");
-        // break;
         default:
             throw new AssertionError(join.getType());
         }
@@ -66,7 +63,6 @@ public final class CnosDBToStringVisitor extends SelectToStringVisitor<CnosDBExp
 
     @Override
     protected boolean shouldVisitOnClause(CnosDBJoin join) {
-        // return join.getType() != CnosDBJoinType.CROSS;
         return true;
     }
 
