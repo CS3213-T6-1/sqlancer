@@ -1,6 +1,5 @@
 package sqlancer.yugabyte.ysql.ast;
 
-import sqlancer.Randomly;
 import sqlancer.common.ast.newast.Join;
 import sqlancer.yugabyte.ysql.YSQLSchema.YSQLColumn;
 import sqlancer.yugabyte.ysql.YSQLSchema.YSQLDataType;
@@ -10,9 +9,9 @@ public class YSQLJoin implements YSQLExpression, Join<YSQLExpression, YSQLTable,
 
     private final YSQLExpression tableReference;
     private YSQLExpression onClause;
-    private final YSQLJoinType type;
+    private final Join.Type type;
 
-    public YSQLJoin(YSQLExpression tableReference, YSQLExpression onClause, YSQLJoinType type) {
+    public YSQLJoin(YSQLExpression tableReference, YSQLExpression onClause, Join.Type type) {
         this.tableReference = tableReference;
         this.onClause = onClause;
         this.type = type;
@@ -26,7 +25,7 @@ public class YSQLJoin implements YSQLExpression, Join<YSQLExpression, YSQLTable,
         return onClause;
     }
 
-    public YSQLJoinType getType() {
+    public Join.Type getType() {
         return type;
     }
 
@@ -38,15 +37,6 @@ public class YSQLJoin implements YSQLExpression, Join<YSQLExpression, YSQLTable,
     @Override
     public YSQLConstant getExpectedValue() {
         throw new AssertionError();
-    }
-
-    public enum YSQLJoinType {
-        INNER, LEFT, RIGHT, FULL, CROSS;
-
-        public static YSQLJoinType getRandom() {
-            return Randomly.fromOptions(values());
-        }
-
     }
 
     @Override

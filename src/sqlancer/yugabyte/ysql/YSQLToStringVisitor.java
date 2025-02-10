@@ -41,37 +41,6 @@ public final class YSQLToStringVisitor extends SelectToStringVisitor<YSQLExpress
     }
 
     @Override
-    protected void visitJoinType(YSQLJoin join) {
-        switch (join.getType()) {
-        case INNER:
-            if (Randomly.getBoolean()) {
-                sb.append("INNER ");
-            }
-            sb.append("JOIN");
-            break;
-        case LEFT:
-            sb.append("LEFT OUTER JOIN");
-            break;
-        case RIGHT:
-            sb.append("RIGHT OUTER JOIN");
-            break;
-        case FULL:
-            sb.append("FULL OUTER JOIN");
-            break;
-        case CROSS:
-            sb.append("CROSS JOIN");
-            break;
-        default:
-            throw new AssertionError(join.getType());
-        }
-    }
-
-    @Override
-    protected boolean shouldVisitOnClause(YSQLJoin join) {
-        return join.getType() != YSQLJoin.YSQLJoinType.CROSS;
-    }
-
-    @Override
     protected boolean hasDistinctOnSupport() {
         return true;
     }
@@ -287,11 +256,6 @@ public final class YSQLToStringVisitor extends SelectToStringVisitor<YSQLExpress
         case BYTEA:
             sb.append("BYTEA");
             break;
-        // if (Randomly.getBoolean()) {
-        // sb.append("(");
-        // sb.append(Randomly.getNotCachedInteger(1, 100));
-        // sb.append(")");
-        // }
         default:
             throw new AssertionError(cast.getType());
         }
