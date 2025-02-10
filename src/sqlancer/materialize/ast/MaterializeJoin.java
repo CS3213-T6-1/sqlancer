@@ -1,6 +1,5 @@
 package sqlancer.materialize.ast;
 
-import sqlancer.Randomly;
 import sqlancer.common.ast.newast.Join;
 import sqlancer.materialize.MaterializeSchema.MaterializeColumn;
 import sqlancer.materialize.MaterializeSchema.MaterializeDataType;
@@ -9,21 +8,11 @@ import sqlancer.materialize.MaterializeSchema.MaterializeTable;
 public class MaterializeJoin
         implements MaterializeExpression, Join<MaterializeExpression, MaterializeTable, MaterializeColumn> {
 
-    public enum MaterializeJoinType {
-        INNER, LEFT, RIGHT, FULL, CROSS;
-
-        public static MaterializeJoinType getRandom() {
-            return Randomly.fromOptions(values());
-        }
-
-    }
-
     private MaterializeExpression onClause;
     private final MaterializeExpression tableReference;
-    private final MaterializeJoinType type;
+    private final Join.Type type;
 
-    public MaterializeJoin(MaterializeExpression tableReference, MaterializeExpression onClause,
-            MaterializeJoinType type) {
+    public MaterializeJoin(MaterializeExpression tableReference, MaterializeExpression onClause, Join.Type type) {
         this.tableReference = tableReference;
         this.onClause = onClause;
         this.type = type;
@@ -37,7 +26,7 @@ public class MaterializeJoin
         return onClause;
     }
 
-    public MaterializeJoinType getType() {
+    public Join.Type getType() {
         return type;
     }
 
