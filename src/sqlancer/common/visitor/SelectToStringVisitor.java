@@ -76,9 +76,34 @@ public abstract class SelectToStringVisitor<T extends Expression<?>, S extends S
 
     protected abstract T getJoinTableReference(J join);
 
-    protected abstract void visitJoinType(J join);
+    protected void visitJoinType(J join) {
+        switch (join.getType()) {
+        case INNER:
+            if (Randomly.getBoolean()) {
+                sb.append("INNER ");
+            }
+            sb.append("JOIN");
+            break;
+        case LEFT:
+            sb.append("LEFT OUTER JOIN");
+            break;
+        case RIGHT:
+            sb.append("RIGHT OUTER JOIN");
+            break;
+        case FULL:
+            sb.append("FULL OUTER JOIN");
+            break;
+        case CROSS:
+            sb.append("CROSS JOIN");
+            break;
+        default:
+            throw new AssertionError(join.getType());
+        }
+    }
 
-    protected abstract boolean shouldVisitOnClause(J join);
+    protected boolean shouldVisitOnClause(J join) {
+        return join.getType() != Join.Type.CROSS;
+    }
 
     protected void visitWhereClause(S select) {
         if (select.getWhereClause() != null) {

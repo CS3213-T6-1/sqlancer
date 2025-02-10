@@ -16,7 +16,6 @@ import sqlancer.materialize.ast.MaterializeExpression;
 import sqlancer.materialize.ast.MaterializeFunction;
 import sqlancer.materialize.ast.MaterializeInOperation;
 import sqlancer.materialize.ast.MaterializeJoin;
-import sqlancer.materialize.ast.MaterializeJoin.MaterializeJoinType;
 import sqlancer.materialize.ast.MaterializeLikeOperation;
 import sqlancer.materialize.ast.MaterializeOrderByTerm;
 import sqlancer.materialize.ast.MaterializePOSIXRegularExpression;
@@ -41,37 +40,6 @@ public final class MaterializeToStringVisitor extends
         for (MaterializeJoin join : select.getJoinClauses()) {
             visitJoinClause(join);
         }
-    }
-
-    @Override
-    protected void visitJoinType(MaterializeJoin join) {
-        switch (join.getType()) {
-        case INNER:
-            if (Randomly.getBoolean()) {
-                sb.append("INNER ");
-            }
-            sb.append("JOIN");
-            break;
-        case LEFT:
-            sb.append("LEFT OUTER JOIN");
-            break;
-        case RIGHT:
-            sb.append("RIGHT OUTER JOIN");
-            break;
-        case FULL:
-            sb.append("FULL OUTER JOIN");
-            break;
-        case CROSS:
-            sb.append("CROSS JOIN");
-            break;
-        default:
-            throw new AssertionError(join.getType());
-        }
-    }
-
-    @Override
-    protected boolean shouldVisitOnClause(MaterializeJoin join) {
-        return join.getType() != MaterializeJoinType.CROSS;
     }
 
     @Override
