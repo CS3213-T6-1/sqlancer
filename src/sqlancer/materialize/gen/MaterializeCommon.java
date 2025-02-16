@@ -52,10 +52,6 @@ public final class MaterializeCommon extends PostgresLikeCommon {
         return errors;
     }
 
-    public static void addCommonExpressionErrors(ExpectedErrors errors) {
-        errors.addAll(getCommonExpressionErrors());
-    }
-
     protected static List<String> getFunctionErrors() {
         List<String> errors = new ArrayList<>();
         errors.add("encoding conversion from UTF8 to ASCII not supported"); // to_ascii
@@ -67,28 +63,15 @@ public final class MaterializeCommon extends PostgresLikeCommon {
     }
 
     public static List<String> getCommonInsertUpdateErrors() {
-        ArrayList<String> errors = new ArrayList<>();
-
-        errors.add("value too long for type character");
-        errors.add("not found in view targetlist");
+        List<String> errors = PostgresLikeCommon.getCommonInsertUpdateErrors();
         errors.add("CAST does not support casting from");
-
         return errors;
-    }
-
-    public static void addCommonInsertUpdateErrors(ExpectedErrors errors) {
-        errors.addAll(getCommonExpressionErrors());
     }
 
     public static List<String> getGroupingErrors() {
         ArrayList<String> errors = new ArrayList<>();
-
-        errors.add("non-integer constant in GROUP BY"); // TODO
         errors.add("unable to parse column reference in GROUP BY clause"); // TODO
-        errors.add("must appear in the GROUP BY clause or be used in an aggregate function");
-        errors.add("is not in select list");
         errors.add("aggregate functions are not allowed in");
-
         return errors;
     }
 

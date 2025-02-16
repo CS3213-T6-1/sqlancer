@@ -101,7 +101,6 @@ public abstract class PostgresLikeCommon {
 
     public static void addCommonExpressionErrors(ExpectedErrors errors) {
         errors.addAll(getCommonExpressionErrors());
-        errors.addAllRegexes(getCommonExpressionRegexErrors());
     }
 
     private static List<String> getToCharFunctionErrors() {
@@ -200,7 +199,6 @@ public abstract class PostgresLikeCommon {
 
         errors.add("value too long for type character");
         errors.add("not found in view targetlist");
-        errors.add("cannot insert a non-DEFAULT value into column");
 
         return errors;
     }
@@ -215,7 +213,6 @@ public abstract class PostgresLikeCommon {
         errors.add("non-integer constant in GROUP BY"); // TODO
         errors.add("must appear in the GROUP BY clause or be used in an aggregate function");
         errors.add("is not in select list");
-        errors.add("aggregate functions are not allowed in GROUP BY");
 
         return errors;
     }
