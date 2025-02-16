@@ -133,7 +133,7 @@ public abstract class PostgresLikeCommon {
         return errors;
     }
 
-    private static List<String> getFunctionErrors() {
+    protected static List<String> getFunctionErrors() {
         ArrayList<String> errors = new ArrayList<>();
 
         errors.add("out of valid range"); // get_bit/get_byte
@@ -199,8 +199,8 @@ public abstract class PostgresLikeCommon {
         ArrayList<String> errors = new ArrayList<>();
 
         errors.add("value too long for type character");
-        errors.add("cannot insert a non-DEFAULT value into column");
         errors.add("not found in view targetlist");
+        errors.add("cannot insert a non-DEFAULT value into column");
 
         return errors;
     }
