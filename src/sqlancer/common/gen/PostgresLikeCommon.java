@@ -51,6 +51,10 @@ public abstract class PostgresLikeCommon {
         return errors;
     }
 
+    public static void addCommonTableErrors(ExpectedErrors errors) {
+        errors.addAll(getCommonTableErrors());
+    }
+
     public static List<String> getCommonExpressionErrors() {
         ArrayList<String> errors = new ArrayList<>();
 
