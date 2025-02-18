@@ -4,19 +4,12 @@ import java.math.BigInteger;
 
 import com.clickhouse.client.ClickHouseDataType;
 
-import sqlancer.IgnoreMeException;
-import sqlancer.clickhouse.ast.ClickHouseConstant;
 import sqlancer.clickhouse.ast.ClickHouseNumericConstant;
 
 public class ClickHouseInt256Constant extends ClickHouseNumericConstant<BigInteger> {
 
     public ClickHouseInt256Constant(BigInteger value) {
         super(value);
-    }
-
-    @Override
-    public boolean isNull() {
-        return false;
     }
 
     @Override
@@ -32,15 +25,6 @@ public class ClickHouseInt256Constant extends ClickHouseNumericConstant<BigInteg
     @Override
     public boolean compareInternal(Object val) {
         return value.compareTo((BigInteger) val) == 0;
-    }
-
-    @Override
-    public ClickHouseConstant applyLess(ClickHouseConstant right) {
-        if (this.getDataType() == right.getDataType()) {
-            return this.asInt() < right.asInt() ? ClickHouseCreateConstant.createTrue()
-                    : ClickHouseCreateConstant.createFalse();
-        }
-        throw new IgnoreMeException();
     }
 
     @Override
