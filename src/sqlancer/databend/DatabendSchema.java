@@ -38,15 +38,6 @@ public class DatabendSchema extends AbstractSchema<DatabendGlobalState, Databend
             } while (dt == DatabendDataType.NULL);
             return dt;
         }
-
-        public static DatabendDataType getRandomWithoutNullAndVarchar() {
-            DatabendDataType dt;
-            do {
-                dt = Randomly.fromOptions(values());
-            } while (dt == DatabendDataType.NULL || dt == DatabendDataType.VARCHAR);
-            return dt;
-        }
-
     }
 
     public static class DatabendCompositeDataType {
