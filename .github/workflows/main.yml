@@ -557,7 +557,7 @@ jobs:
         run: mvn -B package -DskipTests=true -P all
       - name: SQLite Tests for QPG
         run: |
-          mvn -Dtest=TestSQLiteQPG test
+          mvn -Dtest=TestSQLiteQPG test -P all
           
   # Disable flaky test
   # tidb:
