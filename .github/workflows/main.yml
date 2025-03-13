@@ -257,7 +257,7 @@ jobs:
         run: mvn -B package -DskipTests=true -P all
       - name: Run Tests
         run: |
-          DATAFUSION_AVAILABLE=true mvn test -Pdatafusion-tests -P all
+          DATAFUSION_AVAILABLE=true mvn test -Pdatafusion-tests
 
   duckdb:
     name: DBMS Tests (DuckDB)
