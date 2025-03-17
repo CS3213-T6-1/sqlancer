@@ -433,4 +433,36 @@ public abstract class ToStringVisitor<T extends Expression<?>> extends NodeVisit
         }
         sb.append(")");
     }
+
+    public String generateCaseStatement(
+            T switchCondition,
+            List<T> conditions,
+            List<T> thenClauses,
+            T elseExpression,
+            boolean hasSpace
+    ) {
+        StringBuilder caseStmt = new StringBuilder("(CASE ");
+
+        if (switchCondition != null) {
+            visit(switchCondition);
+        }
+
+        for (int i = 0; i < conditions.size(); i++) {
+            caseStmt.append(" WHEN ");
+            visit(conditions.get(i));
+            caseStmt.append(" THEN ");
+            visit(thenClauses.get(i));
+            if(hasSpace) {
+                sb.append(" ");
+            }
+        }
+
+        if (elseExpression != null) {
+            caseStmt.append(" ELSE ");
+            visit(elseExpression);
+        }
+
+        caseStmt.append(" END )");
+        return caseStmt.toString();
+    }
 }
