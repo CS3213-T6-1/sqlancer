@@ -436,7 +436,7 @@ public abstract class ToStringVisitor<T extends Expression<?>> extends NodeVisit
 
     public String generateCaseStatement(T switchCondition, List<T> conditions, List<T> thenClauses, T elseExpression,
             boolean hasSpace) {
-        String initialStmt = hasSpace ? "CASE " : "(CASE";
+        String initialStmt = hasSpace ? "CASE " : "(CASE ";
         StringBuilder caseStmt = new StringBuilder(initialStmt);
 
         if (switchCondition != null) {
