@@ -436,7 +436,8 @@ public abstract class ToStringVisitor<T extends Expression<?>> extends NodeVisit
 
     public String generateCaseStatement(T switchCondition, List<T> conditions, List<T> thenClauses, T elseExpression,
             boolean hasSpace) {
-        StringBuilder caseStmt = new StringBuilder("(CASE ");
+        String initialStmt = hasSpace ? "CASE " : "(CASE";
+        StringBuilder caseStmt = new StringBuilder(initialStmt);
 
         if (switchCondition != null) {
             visit(switchCondition);
@@ -447,9 +448,6 @@ public abstract class ToStringVisitor<T extends Expression<?>> extends NodeVisit
             visit(conditions.get(i));
             caseStmt.append(" THEN ");
             visit(thenClauses.get(i));
-            if (hasSpace) {
-                sb.append(" ");
-            }
         }
 
         if (elseExpression != null) {
@@ -457,7 +455,8 @@ public abstract class ToStringVisitor<T extends Expression<?>> extends NodeVisit
             visit(elseExpression);
         }
 
-        caseStmt.append(" END )");
+        String endStmt = hasSpace ? " END" : " END )";
+        caseStmt.append(endStmt);
         return caseStmt.toString();
     }
 }
