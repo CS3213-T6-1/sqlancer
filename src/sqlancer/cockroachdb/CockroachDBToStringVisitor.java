@@ -135,13 +135,8 @@ public class CockroachDBToStringVisitor extends ToStringVisitor<CockroachDBExpre
 
     @Override
     public void visit(CockroachDBCaseOperation cases) {
-        sb.append(generateCaseStatement(
-                null,
-                cases.getConditions(),
-                cases.getThenClauses(),
-                cases.getElseClause(),
-                true
-        ));
+        sb.append(generateCaseStatement(null, cases.getConditions(), cases.getThenClauses(), cases.getElseClause(),
+                true));
     }
 
     @Override
