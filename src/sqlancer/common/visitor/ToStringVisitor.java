@@ -448,14 +448,23 @@ public abstract class ToStringVisitor<T extends Expression<?>> extends NodeVisit
             visit(conditions.get(i));
             caseStmt.append(" THEN ");
             visit(thenClauses.get(i));
+            if (hasSpace) {
+                caseStmt.append(" ");
+            }
         }
 
         if (elseExpression != null) {
-            caseStmt.append(" ELSE ");
+            if (!hasSpace) {
+                caseStmt.append(" ");
+            }
+            caseStmt.append("ELSE ");
             visit(elseExpression);
+            if (hasSpace) {
+                caseStmt.append(" ");
+            }
         }
 
-        String endStmt = hasSpace ? " END" : " END )";
+        String endStmt = hasSpace ? "END" : " END )";
         caseStmt.append(endStmt);
         return caseStmt.toString();
     }
