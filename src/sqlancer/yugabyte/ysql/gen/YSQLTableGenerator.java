@@ -108,7 +108,7 @@ public class YSQLTableGenerator {
         }
         sb.append(")");
         generatePartitionBy();
-        YSQLCommon.generateWith(sb, globalState, errors, columnsToBeAdded, isTemporaryTable, columnHasPrimaryKey);
+        YSQLCommon.generateWith(sb, globalState, errors, columnsToBeAdded, isTemporaryTable);
         if (Randomly.getBoolean() && isTemporaryTable) {
             sb.append(" ON COMMIT ");
             // todo ON COMMIT DROP fails and it's known issue
