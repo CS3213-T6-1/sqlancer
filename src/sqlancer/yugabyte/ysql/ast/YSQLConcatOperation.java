@@ -16,8 +16,9 @@ public class YSQLConcatOperation extends BinaryNode<YSQLExpression> implements Y
 
     @Override
     public YSQLConstant getExpectedValue() {
-        YSQLConstant leftExpectedValue = getLeft().getExpectedValue();
-        YSQLConstant rightExpectedValue = getRight().getExpectedValue();
+        // Get expected values with null checks
+        YSQLConstant leftExpectedValue = getLeft() != null ? getLeft().getExpectedValue() : null;
+        YSQLConstant rightExpectedValue = getRight() != null ? getRight().getExpectedValue() : null;
         if (leftExpectedValue == null || rightExpectedValue == null) {
             return null;
         }
