@@ -240,7 +240,8 @@ public class SQLite3Provider extends SQLProviderAdapter<SQLite3GlobalState, SQLi
                 statement = statement.trim();
                 if (!statement.isEmpty()) {
                     SQLQueryAdapter queryAdapter = new SQLQueryAdapter(statement + ";",
-                            ExpectedErrors.from("[SQLITE_IOERR_DELETE_NOENT] The file being deleted does not exist (disk I/O error)"));
+                            ExpectedErrors.from("[SQLITE_IOERR_DELETE_NOENT] The file being deleted does not exist (disk I/O error)",
+                                    "[SQLITE_CANTOPEN] Unable to open the database file (unable to open database file)"));
                     globalState.executeStatement(queryAdapter);
                 }
             }
