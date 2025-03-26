@@ -3,9 +3,10 @@ package sqlancer.databend;
 import java.util.ArrayList;
 import java.util.List;
 
+import sqlancer.SQLErrors;
 import sqlancer.common.query.ExpectedErrors;
 
-public final class DatabendErrors {
+public final class DatabendErrors extends SQLErrors {
 
     private DatabendErrors() {
     }
@@ -59,10 +60,6 @@ public final class DatabendErrors {
         return errors;
     }
 
-    public static void addExpressionErrors(ExpectedErrors errors) {
-        errors.addAll(getExpressionErrors());
-    }
-
     public static List<String> getInsertErrors() {
         ArrayList<String> errors = new ArrayList<>();
 
@@ -72,10 +69,6 @@ public final class DatabendErrors {
         errors.add("number overflowed while evaluating function `"); // 不能在int16类型column上插入int64的数据
 
         return errors;
-    }
-
-    public static void addInsertErrors(ExpectedErrors errors) {
-        errors.addAll(getInsertErrors());
     }
 
     public static List<String> getGroupByErrors() {

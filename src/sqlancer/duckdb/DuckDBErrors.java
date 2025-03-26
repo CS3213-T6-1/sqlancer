@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import sqlancer.SQLErrors;
 import sqlancer.common.query.ExpectedErrors;
 
-public final class DuckDBErrors {
+public final class DuckDBErrors extends SQLErrors {
 
     private DuckDBErrors() {
     }
@@ -130,10 +131,6 @@ public final class DuckDBErrors {
         errors.add("Failed to cast");
 
         return errors;
-    }
-
-    public static void addInsertErrors(ExpectedErrors errors) {
-        errors.addAll(getInsertErrors());
     }
 
     public static List<String> getGroupByErrors() {
