@@ -248,7 +248,12 @@ public class SQLite3Provider extends SQLProviderAdapter<SQLite3GlobalState, SQLi
 
             // Force schema reload to recognize the custom tables
             // globalState.getSchema().setDatabaseName(globalState.getDatabaseName());
-            globalState.updateSchema();
+            try {
+                globalState.updateSchema();
+            } catch (Exception e) {
+                System.err.println("Warning: Error updating schema after custom script: " + e.getMessage());
+                // Continue execution instead of failing
+            }
 
         } catch (IOException e) {
             System.err.println("Failed to read custom SQL script from: " + customScriptPath);
