@@ -178,7 +178,7 @@ public final class SQLite3Errors {
         ArrayList<String> errors = new ArrayList<>();
 
         errors.add("[SQLITE_IOERR]");
-        errors.add("[SQLITE_IOERR_DELETE_NOENT]");
+        errors.add("[SQLITE_IOERR_DELETE_NOENT] The file being deleted does not exist (disk I/O error)");
         errors.add("[SQLITE_CANTOPEN]");
         errors.add("disk I/O error");
         errors.add("unable to open database file");
