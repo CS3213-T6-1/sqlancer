@@ -174,4 +174,22 @@ public final class SQLite3Errors {
         errors.addAll(getInsertUpdateErrors());
     }
 
+    public static List<String> getIOErrors() {
+        ArrayList<String> errors = new ArrayList<>();
+
+        errors.add("[SQLITE_IOERR]");
+        errors.add("[SQLITE_IOERR_DELETE_NOENT]");
+        errors.add("[SQLITE_CANTOPEN]");
+        errors.add("disk I/O error");
+        errors.add("unable to open database file");
+        errors.add("database file is locked");
+        errors.add("The database file is locked");
+
+        return errors;
+    }
+
+    public static void addIOErrors(ExpectedErrors errors) {
+        errors.addAll(getIOErrors());
+    }
+
 }

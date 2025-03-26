@@ -351,6 +351,7 @@ public class SQLite3Provider extends SQLProviderAdapter<SQLite3GlobalState, SQLi
         SQLite3Errors.addMatchQueryErrors(errors);
         SQLite3Errors.addQueryErrors(errors);
         SQLite3Errors.addInsertUpdateErrors(errors);
+        SQLite3Errors.addIOErrors(errors);
 
         SQLQueryAdapter q = new SQLQueryAdapter(SQLite3ExplainGenerator.explain(selectStr), errors);
         try (SQLancerResultSet rs = q.executeAndGet(globalState)) {
