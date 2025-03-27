@@ -181,6 +181,7 @@ public final class SQLite3Errors {
         errors.add("[SQLITE_CANTOPEN] Unable to open the database file (unable to open database file)");
         errors.add("[SQLITE_CORRUPT] The database disk image is malformed (database disk image is malformed)");
         errors.add("[SQLITE_IOERR_SHORT_READ] The VFS layer was unable to obtain as many bytes as was requested (disk I/O error)");
+        errors.add("[SQLITE_NOTADB] File opened that is not a database file (file is not a database)");
 
         return errors;
     }
