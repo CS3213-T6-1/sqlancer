@@ -21,6 +21,6 @@ public class TestDuckDBNoREC {
         // https://github.com/sqlancer/sqlancer/pull/45
         assertEquals(0, Main.executeMain(new String[] { "--random-seed", "0", "--timeout-seconds", TestConfig.SECONDS,
                 "--num-threads", "1", "--num-queries", TestConfig.NUM_QUERIES, "duckdb", "--oracle", "NOREC",
-                "--use-custom-script", "test/sqlancer/custom_tables.sql" }));
+                "--use-custom-script", "test/sqlancer/duckdb_custom_tables.sql" }));
     }
 }
