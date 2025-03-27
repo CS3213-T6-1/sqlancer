@@ -535,7 +535,8 @@ jobs:
         run: mvn -B package -DskipTests=true
       - name: SQLite Tests
         run: |
-          mvn -Dtest=TestSQLiteNoREC test
+          mvn -Dtest=TestSQLitePQS test
+               
 
   sqlite-qpg:
     name: QPG Tests (SQLite)
