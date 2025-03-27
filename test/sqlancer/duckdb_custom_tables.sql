@@ -1,5 +1,6 @@
+CREATE SEQUENCE userId_seq START 1;
 CREATE TABLE users (
-    id INTEGER PRIMARY KEY,
+    id INTEGER DEFAULT nextval('userId_seq'),
     name TEXT,
     age INTEGER
 );
@@ -16,8 +17,9 @@ INSERT INTO users (name, age) VALUES
 ('Ivy', 29),
 ('Jack', 31);
 
+CREATE SEQUENCE cityId_seq START 1;
 CREATE TABLE cities (
-    id INTEGER PRIMARY KEY,
+    id INTEGER DEFAULT nextval('cityId_seq'),
     city_name TEXT,
     population INTEGER
 );
@@ -34,8 +36,9 @@ INSERT INTO cities (city_name, population) VALUES
 ('Dallas', 1300000),
 ('San Jose', 1000000);
 
+CREATE SEQUENCE productId_seq START 1;
 CREATE TABLE products (
-    id INTEGER PRIMARY KEY,
+    id INTEGER DEFAULT nextval('productId_seq'),
     product_name TEXT,
     price REAL
 );
@@ -52,8 +55,9 @@ INSERT INTO products (product_name, price) VALUES
 ('Webcam', 59.99),
 ('Printer', 129.99);
 
+CREATE SEQUENCE countryId_seq START 1;
 CREATE TABLE countries (
-    id INTEGER PRIMARY KEY,
+    id INTEGER DEFAULT nextval('productId_seq'),
     country_name TEXT,
     capital TEXT
 );
@@ -70,8 +74,9 @@ INSERT INTO countries (country_name, capital) VALUES
 ('China', 'Beijing'),
 ('Australia', 'Canberra');
 
+CREATE SEQUENCE bookId_seq START 1;
 CREATE TABLE books (
-    id INTEGER PRIMARY KEY,
+    id INTEGER DEFAULT nextval('productId_seq'),
     title TEXT,
     author TEXT
 );
