@@ -79,6 +79,13 @@ public class SQLite3Options implements DBMSSpecificOptions<SQLite3OracleFactory>
     @Parameter(names = { "--max-num-indexes" }, description = "The maximum number of indexes that can be created")
     public int maxNumIndexes = 20;
 
+    @Parameter(names = "--use-custom-script", description = "Use a custom script to generate database tables for testing")
+    public String customScriptPath;
+
+    public String getCustomScriptPath() {
+        return customScriptPath;
+    }
+
     @Override
     public List<SQLite3OracleFactory> getTestOracleFactory() {
         return Arrays.asList(oracles);

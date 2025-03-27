@@ -2,6 +2,8 @@ package sqlancer.sqlite3;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,7 +55,8 @@ public class SQLite3Provider extends SQLProviderAdapter<SQLite3GlobalState, SQLi
 
     // PRAGMAS to achieve good performance
     private static final List<String> DEFAULT_PRAGMAS = Arrays.asList("PRAGMA cache_size = 50000;",
-            "PRAGMA temp_store=MEMORY;", "PRAGMA synchronous=off;");
+            "PRAGMA temp_store=MEMORY;", "PRAGMA synchronous=off;", "PRAGMA journal_mode = WAL;",
+            "PRAGMA locking_mode = EXCLUSIVE;");
 
     public SQLite3Provider() {
         super(SQLite3GlobalState.class, SQLite3Options.class);
@@ -182,23 +185,30 @@ public class SQLite3Provider extends SQLProviderAdapter<SQLite3GlobalState, SQLi
     public void generateDatabase(SQLite3GlobalState globalState) throws Exception {
         Randomly r = new Randomly(SQLite3SpecialStringGenerator::generate);
         globalState.setRandomly(r);
+
         if (globalState.getDbmsSpecificOptions().generateDatabase) {
-
             addSensiblePragmaDefaults(globalState);
-            int nrTablesToCreate = 1;
-            if (Randomly.getBoolean()) {
-                nrTablesToCreate++;
-            }
-            while (Randomly.getBooleanWithSmallProbability()) {
-                nrTablesToCreate++;
-            }
-            int i = 0;
 
-            do {
-                SQLQueryAdapter tableQuery = getTableQuery(globalState, i++);
-                globalState.executeStatement(tableQuery);
-            } while (globalState.getSchema().getDatabaseTables().size() < nrTablesToCreate);
-            assert globalState.getSchema().getTables().getTables().size() == nrTablesToCreate;
+            String customScriptPath = globalState.getDbmsSpecificOptions().getCustomScriptPath();
+            if (customScriptPath != null) {
+                executeCustomScript(globalState, customScriptPath);
+            } else {
+                int nrTablesToCreate = 1;
+                if (Randomly.getBoolean()) {
+                    nrTablesToCreate++;
+                }
+                while (Randomly.getBooleanWithSmallProbability()) {
+                    nrTablesToCreate++;
+                }
+                int i = 0;
+
+                do {
+                    SQLQueryAdapter tableQuery = getTableQuery(globalState, i++);
+                    globalState.executeStatement(tableQuery);
+                } while (globalState.getSchema().getDatabaseTables().size() < nrTablesToCreate);
+                assert globalState.getSchema().getTables().getTables().size() == nrTablesToCreate;
+            }
+
             checkTablesForGeneratedColumnLoops(globalState);
             if (globalState.getDbmsSpecificOptions().testDBStats && Randomly.getBooleanWithSmallProbability()) {
                 SQLQueryAdapter tableQuery = new SQLQueryAdapter(
@@ -219,6 +229,24 @@ public class SQLite3Provider extends SQLProviderAdapter<SQLite3GlobalState, SQLi
             // also do an abort for DEFERRABLE INITIALLY DEFERRED
             query = SQLite3TransactionGenerator.generateRollbackTransaction(globalState);
             globalState.executeStatement(query);
+        }
+    }
+
+    private void executeCustomScript(SQLite3GlobalState globalState, String customScriptPath) throws Exception {
+        try {
+            String sqlScript = new String(Files.readAllBytes(Paths.get(customScriptPath)));
+            String[] statements = sqlScript.split(";");
+
+            for (String statement : statements) {
+                statement = statement.trim();
+                if (!statement.isEmpty()) {
+                    SQLQueryAdapter queryAdapter = new SQLQueryAdapter(statement + ";");
+                    globalState.executeStatement(queryAdapter);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to read custom SQL script from: " + customScriptPath);
+            throw new IgnoreMeException();
         }
     }
 

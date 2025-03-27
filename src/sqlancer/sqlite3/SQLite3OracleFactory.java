@@ -37,6 +37,7 @@ public enum SQLite3OracleFactory implements OracleFactory<SQLite3GlobalState> {
             SQLite3ExpressionGenerator gen = new SQLite3ExpressionGenerator(globalState);
             ExpectedErrors errors = ExpectedErrors.newErrors().with(SQLite3Errors.getExpectedExpressionErrors())
                     .with(SQLite3Errors.getMatchQueryErrors()).with(SQLite3Errors.getQueryErrors())
+                    .with(SQLite3Errors.getIOErrors())
                     .with("misuse of aggregate", "misuse of window function",
                             "second argument to nth_value must be a positive integer", "no such table",
                             "no query solution", "unable to use function MATCH in the requested context")

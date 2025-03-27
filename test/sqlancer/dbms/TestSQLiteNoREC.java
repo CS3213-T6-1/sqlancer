@@ -14,4 +14,11 @@ public class TestSQLiteNoREC {
                 "--num-threads", "1", "--num-queries", TestConfig.NUM_QUERIES, "sqlite3", "--oracle", "NoREC" }));
     }
 
+    @Test
+    public void testSqliteNoREC_customTable() {
+        assertEquals(0,
+                Main.executeMain(new String[] { "--random-seed", "0", "--timeout-seconds", TestConfig.SECONDS,
+                        "--num-threads", "1", "--num-queries", TestConfig.NUM_QUERIES, "sqlite3", "--oracle", "NoREC",
+                        "--use-custom-script", "test/sqlancer/custom_tables.sql" }));
+    }
 }
