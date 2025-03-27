@@ -1,6 +1,9 @@
 package sqlancer.duckdb;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -103,13 +106,19 @@ public class DuckDBProvider extends SQLProviderAdapter<DuckDBGlobalState, DuckDB
 
     @Override
     public void generateDatabase(DuckDBGlobalState globalState) throws Exception {
-        for (int i = 0; i < Randomly.fromOptions(1, 2); i++) {
-            boolean success;
-            do {
-                SQLQueryAdapter qt = new DuckDBTableGenerator().getQuery(globalState);
-                success = globalState.executeStatement(qt);
-            } while (!success);
+        String customScriptPath = globalState.getDbmsSpecificOptions().getCustomScriptPath();
+        if (customScriptPath != null) {
+            executeCustomScript(globalState, customScriptPath);
+        } else {
+            for (int i = 0; i < Randomly.fromOptions(1, 2); i++) {
+                boolean success;
+                do {
+                    SQLQueryAdapter qt = new DuckDBTableGenerator().getQuery(globalState);
+                    success = globalState.executeStatement(qt);
+                } while (!success);
+            }
         }
+
         if (globalState.getSchema().getDatabaseTables().isEmpty()) {
             throw new IgnoreMeException(); // TODO
         }
@@ -120,6 +129,24 @@ public class DuckDBProvider extends SQLProviderAdapter<DuckDBGlobalState, DuckDB
                     }
                 });
         se.executeStatements();
+    }
+
+    private void executeCustomScript(DuckDBGlobalState globalState, String customScriptPath) throws Exception {
+        try {
+            String sqlScript = new String(Files.readAllBytes(Paths.get(customScriptPath)));
+            String[] statements = sqlScript.split(";");
+
+            for (String statement : statements) {
+                statement = statement.trim();
+                if (!statement.isEmpty()) {
+                    SQLQueryAdapter queryAdapter = new SQLQueryAdapter(statement + ";");
+                    globalState.executeStatement(queryAdapter);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to read custom SQL script from: " + customScriptPath);
+            throw new Exception();
+        }
     }
 
     public void tryDeleteFile(String fname) {
