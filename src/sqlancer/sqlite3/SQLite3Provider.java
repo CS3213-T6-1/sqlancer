@@ -55,7 +55,7 @@ public class SQLite3Provider extends SQLProviderAdapter<SQLite3GlobalState, SQLi
 
     // PRAGMAS to achieve good performance
     private static final List<String> DEFAULT_PRAGMAS = Arrays.asList("PRAGMA cache_size = 50000;",
-            "PRAGMA temp_store=MEMORY;", "PRAGMA synchronous=off;", "PRAGMA journal_mode = WAL;");
+            "PRAGMA temp_store=MEMORY;", "PRAGMA synchronous=off;", "PRAGMA journal_mode = WAL;", "PRAGMA locking_mode = EXCLUSIVE;");
 
     public SQLite3Provider() {
         super(SQLite3GlobalState.class, SQLite3Options.class);
