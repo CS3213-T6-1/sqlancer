@@ -764,15 +764,6 @@ public abstract class PrestoConstant implements PrestoExpression {
             this.value = value;
         }
 
-        public boolean getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
         @Override
         public boolean asBoolean() {
             return value;
@@ -781,6 +772,15 @@ public abstract class PrestoConstant implements PrestoExpression {
         @Override
         public boolean isBoolean() {
             return true;
+        }
+
+        public boolean getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
         }
 
     }

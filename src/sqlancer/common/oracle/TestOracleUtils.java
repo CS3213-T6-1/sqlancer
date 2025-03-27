@@ -3,8 +3,6 @@ package sqlancer.common.oracle;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.postgresql.util.PSQLException;
-
 import sqlancer.ComparatorHelper;
 import sqlancer.IgnoreMeException;
 import sqlancer.Randomly;
@@ -96,9 +94,7 @@ public final class TestOracleUtils {
                 resultString = result.getString(1);
             }
         } catch (SQLException e) {
-            if (isEnabled || e instanceof PSQLException) {
-                throw new AssertionError(queryString, e);
-            } else if (!e.getMessage().contains("Not implemented type")) {
+            if (!e.getMessage().contains("Not implemented type") || isEnabled) {
                 throw new AssertionError(queryString, e);
             } else {
                 throw new IgnoreMeException();
