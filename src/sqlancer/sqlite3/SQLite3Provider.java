@@ -239,11 +239,7 @@ public class SQLite3Provider extends SQLProviderAdapter<SQLite3GlobalState, SQLi
             for (String statement : statements) {
                 statement = statement.trim();
                 if (!statement.isEmpty()) {
-                    SQLQueryAdapter queryAdapter = new SQLQueryAdapter(statement + ";",
-                            ExpectedErrors.from("[SQLITE_IOERR_DELETE_NOENT] The file being deleted does not exist (disk I/O error)",
-                                    "[SQLITE_CANTOPEN] Unable to open the database file (unable to open database file)",
-                                    "[SQLITE_CORRUPT] The database disk image is malformed (database disk image is malformed)",
-                                    "[SQLITE_IOERR_SHORT_READ] The VFS layer was unable to obtain as many bytes as was requested (disk I/O error)"));
+                    SQLQueryAdapter queryAdapter = new SQLQueryAdapter(statement + ";");
                     globalState.executeStatement(queryAdapter);
                 }
             }
