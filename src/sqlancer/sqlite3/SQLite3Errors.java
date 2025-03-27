@@ -177,13 +177,9 @@ public final class SQLite3Errors {
     public static List<String> getIOErrors() {
         ArrayList<String> errors = new ArrayList<>();
 
-        errors.add("[SQLITE_IOERR]");
         errors.add("[SQLITE_IOERR_DELETE_NOENT] The file being deleted does not exist (disk I/O error)");
-        errors.add("[SQLITE_CANTOPEN]");
-        errors.add("disk I/O error");
-        errors.add("unable to open database file");
-        errors.add("database file is locked");
-        errors.add("The database file is locked");
+        errors.add("[SQLITE_CANTOPEN] Unable to open the database file (unable to open database file)");
+        errors.add("[SQLITE_CORRUPT] The database disk image is malformed (database disk image is malformed)");
 
         return errors;
     }
