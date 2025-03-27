@@ -55,7 +55,7 @@ public class YSQLTableGenerator {
         errors.add("has pseudo-type unknown");
         errors.add("no collation was derived for partition key column");
         errors.add("cannot set colocated true on a non-colocated database");
-        errors.add("Cannot split table that does not have primary key");
+        errors.add("cannot split table that does not have primary key");
         errors.add("inherits from generated column but specifies identity");
         errors.add("inherits from generated column but specifies default");
         YSQLErrors.addCommonExpressionErrors(errors);

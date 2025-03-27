@@ -1,32 +1,10 @@
 package sqlancer.doris.ast;
 
+import sqlancer.DatabendDorisConstant;
 import sqlancer.doris.DorisSchema.DorisDataType;
 import sqlancer.doris.utils.DorisNumberUtils;
 
-public abstract class DorisConstant implements DorisExpression {
-
-    private DorisConstant() {
-    }
-
-    public boolean isNull() {
-        return false;
-    }
-
-    public boolean isInt() {
-        return false;
-    }
-
-    public boolean isBoolean() {
-        return false;
-    }
-
-    public boolean isString() {
-        return false;
-    }
-
-    public boolean isFloat() {
-        return false;
-    }
+public abstract class DorisConstant extends DatabendDorisConstant implements DorisExpression {
 
     public boolean isNum() {
         // for INT, FLOAT, BOOLEAN
@@ -39,22 +17,6 @@ public abstract class DorisConstant implements DorisExpression {
 
     public boolean isDatetime() {
         return false;
-    }
-
-    public boolean asBoolean() {
-        throw new UnsupportedOperationException(this.toString());
-    }
-
-    public long asInt() {
-        throw new UnsupportedOperationException(this.toString());
-    }
-
-    public String asString() {
-        throw new UnsupportedOperationException(this.toString());
-    }
-
-    public double asFloat() {
-        throw new UnsupportedOperationException(this.toString());
     }
 
     public abstract DorisConstant cast(DorisDataType dataType);
@@ -96,12 +58,28 @@ public abstract class DorisConstant implements DorisExpression {
         }
     }
 
-    public static class DorisIntConstant extends DorisConstant {
+    public abstract static class DorisNumericConstant<T extends Number> extends DorisConstant {
+        protected final T value;
 
-        private final long value;
+        public DorisNumericConstant(T value) {
+            this.value = value;
+        }
+
+        public T getValue() {
+            return value;
+        }
+
+        @Override
+        public boolean isNum() {
+            return true;
+        }
+
+    }
+
+    public static class DorisIntConstant extends DorisNumericConstant<Long> {
 
         public DorisIntConstant(long value) {
-            this.value = value;
+            super(value);
         }
 
         @Override
@@ -109,17 +87,8 @@ public abstract class DorisConstant implements DorisExpression {
             return String.valueOf(value);
         }
 
-        public long getValue() {
-            return value;
-        }
-
         @Override
         public boolean isInt() {
-            return true;
-        }
-
-        @Override
-        public boolean isNum() {
             return true;
         }
 
@@ -191,25 +160,14 @@ public abstract class DorisConstant implements DorisExpression {
 
     }
 
-    public static class DorisFloatConstant extends DorisConstant {
-
-        private final double value;
+    public static class DorisFloatConstant extends DorisNumericConstant<Double> {
 
         public DorisFloatConstant(double value) {
-            this.value = value;
-        }
-
-        public double getValue() {
-            return value;
+            super(value);
         }
 
         @Override
         public boolean isFloat() {
-            return true;
-        }
-
-        @Override
-        public boolean isNum() {
             return true;
         }
 
@@ -228,7 +186,7 @@ public abstract class DorisConstant implements DorisExpression {
         public DorisConstant cast(DorisDataType dataType) {
             switch (dataType) {
             case INT:
-                return new DorisIntConstant((long) value);
+                return new DorisIntConstant(value.longValue());
             case FLOAT:
             case DECIMAL:
                 return this;
@@ -380,16 +338,23 @@ public abstract class DorisConstant implements DorisExpression {
 
     }
 
-    public static class DorisDateConstant extends DorisConstant {
-
+    public abstract static class DorisTemporalConstant extends DorisConstant {
         public String textRepr;
 
-        public DorisDateConstant(long val) {
-            textRepr = DorisNumberUtils.timestampToDateText(val);
+        public DorisTemporalConstant(long val) {
+            if (this instanceof DorisDateConstant) {
+                textRepr = DorisNumberUtils.timestampToDateText(val);
+            } else {
+                textRepr = DorisNumberUtils.timestampToDatetimeText(val);
+            }
         }
 
-        public DorisDateConstant(String textRepr) {
+        public DorisTemporalConstant(String textRepr) {
             this.textRepr = textRepr;
+        }
+
+        public DorisTemporalConstant() {
+            textRepr = "CURRENT_TIMESTAMP";
         }
 
         public String getValue() {
@@ -397,13 +362,27 @@ public abstract class DorisConstant implements DorisExpression {
         }
 
         @Override
-        public String toString() {
-            return String.format("DATE '%s'", textRepr);
+        public String asString() {
+            return textRepr;
+        }
+
+    }
+
+    public static class DorisDateConstant extends DorisTemporalConstant {
+
+        public String textRepr;
+
+        public DorisDateConstant(long val) {
+            super(val);
+        }
+
+        public DorisDateConstant(String textRepr) {
+            super(textRepr);
         }
 
         @Override
-        public String asString() {
-            return textRepr;
+        public String toString() {
+            return String.format("DATE '%s'", textRepr);
         }
 
         @Override
@@ -456,34 +435,25 @@ public abstract class DorisConstant implements DorisExpression {
         }
     }
 
-    public static class DorisDatetimeConstant extends DorisConstant {
+    public static class DorisDatetimeConstant extends DorisTemporalConstant {
 
         public String textRepr;
 
         public DorisDatetimeConstant(long val) {
-            textRepr = DorisNumberUtils.timestampToDatetimeText(val);
+            super(val);
         }
 
         public DorisDatetimeConstant(String textRepr) {
-            this.textRepr = textRepr;
+            super(textRepr);
         }
 
         public DorisDatetimeConstant() {
-            textRepr = "CURRENT_TIMESTAMP";
-        }
-
-        public String getValue() {
-            return textRepr;
+            super();
         }
 
         @Override
         public String toString() {
             return String.format("TIMESTAMP '%s'", textRepr);
-        }
-
-        @Override
-        public String asString() {
-            return textRepr;
         }
 
         @Override
@@ -576,13 +546,13 @@ public abstract class DorisConstant implements DorisExpression {
         }
 
         @Override
-        public boolean asBoolean() {
-            return value;
+        public boolean isBoolean() {
+            return true;
         }
 
         @Override
-        public boolean isBoolean() {
-            return true;
+        public boolean asBoolean() {
+            return value;
         }
 
         @Override

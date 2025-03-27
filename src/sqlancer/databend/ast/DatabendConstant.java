@@ -3,50 +3,12 @@ package sqlancer.databend.ast;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import sqlancer.DatabendDorisConstant;
 import sqlancer.databend.DatabendSchema.DatabendDataType;
 
-public abstract class DatabendConstant implements DatabendExpression {
-
-    private DatabendConstant() {
-    }
-
-    public boolean isNull() {
-        return false;
-    }
-
-    public boolean isInt() {
-        return false;
-    }
-
-    public boolean isBoolean() {
-        return false;
-    }
-
-    public boolean isString() {
-        return false;
-    }
-
-    public boolean isFloat() {
-        return false;
-    }
+public abstract class DatabendConstant extends DatabendDorisConstant implements DatabendExpression {
 
     public abstract DatabendConstant cast(DatabendDataType dataType);
-
-    public boolean asBoolean() {
-        throw new UnsupportedOperationException(this.toString());
-    }
-
-    public long asInt() {
-        throw new UnsupportedOperationException(this.toString());
-    }
-
-    public String asString() {
-        throw new UnsupportedOperationException(this.toString());
-    }
-
-    public double asFloat() {
-        throw new UnsupportedOperationException(this.toString());
-    }
 
     protected Timestamp truncateTimestamp(long val) {
         // Databend supports `date` and `timestamp` type where the year cannot exceed `9999`,
@@ -99,12 +61,31 @@ public abstract class DatabendConstant implements DatabendExpression {
         // }
     }
 
-    public static class DatabendIntConstant extends DatabendConstant {
+    public abstract static class DatabendNumericConstant<T extends Number> extends DatabendConstant {
+        protected final T value;
 
-        private final long value;
+        public DatabendNumericConstant(T value) {
+            this.value = value;
+        }
+
+        @Override
+        public DatabendConstant isLessThan(DatabendConstant rightVal) {
+            if (rightVal.isNull()) {
+                return DatabendConstant.createNullConstant();
+            } else if (rightVal.isInt()) {
+                return DatabendConstant.createBooleanConstant(value.doubleValue() < rightVal.asInt());
+            } else if (rightVal.isFloat()) {
+                return DatabendConstant.createBooleanConstant(value.doubleValue() < rightVal.asFloat());
+            } else {
+                throw new AssertionError(rightVal);
+            }
+        }
+    }
+
+    public static class DatabendIntConstant extends DatabendNumericConstant<Long> {
 
         public DatabendIntConstant(long value) {
-            this.value = value;
+            super(value);
         }
 
         @Override
@@ -157,30 +138,15 @@ public abstract class DatabendConstant implements DatabendExpression {
         }
 
         @Override
-        public DatabendConstant isLessThan(DatabendConstant rightVal) {
-            if (rightVal.isNull()) {
-                return DatabendConstant.createNullConstant();
-            } else if (rightVal.isInt()) {
-                return DatabendConstant.createBooleanConstant(value < rightVal.asInt());
-            } else if (rightVal.isFloat()) {
-                return DatabendConstant.createBooleanConstant(value < rightVal.asFloat());
-            } else {
-                throw new AssertionError(rightVal);
-            }
-        }
-
-        @Override
         public DatabendDataType getExpectedType() {
             return DatabendDataType.INT;
         }
     }
 
-    public static class DatabendFloatConstant extends DatabendConstant {
-
-        private final double value;
+    public static class DatabendFloatConstant extends DatabendNumericConstant<Double> {
 
         public DatabendFloatConstant(double value) {
-            this.value = value;
+            super(value);
         }
 
         public double getValue() {
@@ -209,7 +175,7 @@ public abstract class DatabendConstant implements DatabendExpression {
             case FLOAT:
                 return this;
             case INT:
-                return DatabendConstant.createIntConstant((long) value);
+                return DatabendConstant.createIntConstant(value.longValue());
             case BOOLEAN:
                 return DatabendConstant.createBooleanConstant(value != 0);
             case VARCHAR:
@@ -227,19 +193,6 @@ public abstract class DatabendConstant implements DatabendExpression {
         @Override
         public DatabendConstant isEquals(DatabendConstant rightVal) {
             return null;
-        }
-
-        @Override
-        public DatabendConstant isLessThan(DatabendConstant rightVal) {
-            if (rightVal.isNull()) {
-                return DatabendConstant.createNullConstant();
-            } else if (rightVal.isInt()) {
-                return DatabendConstant.createBooleanConstant(value < rightVal.asInt());
-            } else if (rightVal.isFloat()) {
-                return DatabendConstant.createBooleanConstant(value < rightVal.asFloat());
-            } else {
-                throw new AssertionError(rightVal);
-            }
         }
     }
 
@@ -324,23 +277,22 @@ public abstract class DatabendConstant implements DatabendExpression {
         }
     }
 
-    public static class DatabendDateConstant extends DatabendConstant {
+    public abstract static class DatabendTemporalConstant extends DatabendConstant {
+        protected String textRepr;
 
-        public String textRepr;
-
-        public DatabendDateConstant(long val) {
+        public DatabendTemporalConstant(long val) {
             Timestamp timestamp = truncateTimestamp(val);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat dateFormat;
+            if (this instanceof DatabendDateConstant) {
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            } else {
+                dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            }
             textRepr = dateFormat.format(timestamp);
         }
 
         public String getValue() {
             return textRepr;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("DATE '%s'", textRepr);
         }
 
         @Override
@@ -359,38 +311,27 @@ public abstract class DatabendConstant implements DatabendExpression {
         }
     }
 
-    public static class DatabendTimestampConstant extends DatabendConstant {
+    public static class DatabendDateConstant extends DatabendTemporalConstant {
 
-        public String textRepr;
-
-        public DatabendTimestampConstant(long val) {
-            Timestamp timestamp = truncateTimestamp(val);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            textRepr = dateFormat.format(timestamp);
+        public DatabendDateConstant(long val) {
+            super(val);
         }
 
-        public String getValue() {
-            return textRepr;
+        @Override
+        public String toString() {
+            return String.format("DATE '%s'", textRepr);
+        }
+    }
+
+    public static class DatabendTimestampConstant extends DatabendTemporalConstant {
+
+        public DatabendTimestampConstant(long val) {
+            super(val);
         }
 
         @Override
         public String toString() {
             return String.format("TIMESTAMP '%s'", textRepr);
-        }
-
-        @Override
-        public DatabendConstant cast(DatabendDataType dataType) {
-            return null;
-        }
-
-        @Override
-        public DatabendConstant isEquals(DatabendConstant rightVal) {
-            return null;
-        }
-
-        @Override
-        public DatabendConstant isLessThan(DatabendConstant rightVal) {
-            return null;
         }
     }
 
