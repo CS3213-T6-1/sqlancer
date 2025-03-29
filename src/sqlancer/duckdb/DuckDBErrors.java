@@ -65,6 +65,7 @@ public final class DuckDBErrors {
 
         errors.add(Pattern.compile("Binder Error: Cannot mix values of type .* and .* in BETWEEN clause"));
         errors.add(Pattern.compile("Binder Error: Cannot mix values of type .* and .* in CASE expression"));
+        errors.add(Pattern.compile("Binder Error: No columns found to join on in NATURAL JOIN .*"));
         errors.add(Pattern.compile("Cannot mix values of type .* and .* in COALESCE operator"));
         errors.add(Pattern.compile("Cannot compare values of type .* and type .*"));
 
