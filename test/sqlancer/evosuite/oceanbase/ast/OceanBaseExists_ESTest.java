@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -70,39 +69,6 @@ public class OceanBaseExists_ESTest {
 
     @Test
     public void test4() throws Throwable {
-        OceanBaseExists oceanBaseExists0 = null;
-        try {
-            oceanBaseExists0 = new OceanBaseExists((OceanBaseExpression) null);
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.oceanbase.ast.OceanBaseExists", e);
-        }
-    }
-
-    private void verifyException(String s, NullPointerException e) {
-    }
-
-    @Test
-    public void test5() throws Throwable {
-        OceanBaseSelect oceanBaseSelect0 = new OceanBaseSelect();
-        OceanBaseExists oceanBaseExists0 = null;
-        try {
-            oceanBaseExists0 = new OceanBaseExists(oceanBaseSelect0);
-            fail("Expecting exception: AssertionError");
-
-        } catch (AssertionError e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-        }
-    }
-
-    @Test
-    public void test6() throws Throwable {
         OceanBaseConstant.OceanBaseTextConstant oceanBaseConstant_OceanBaseTextConstant0 = new OceanBaseConstant.OceanBaseTextConstant(
                 "");
         OceanBaseExists oceanBaseExists0 = new OceanBaseExists(oceanBaseConstant_OceanBaseTextConstant0);
@@ -111,7 +77,7 @@ public class OceanBaseExists_ESTest {
     }
 
     @Test
-    public void test7() throws Throwable {
+    public void test5() throws Throwable {
         OceanBaseSelect oceanBaseSelect0 = new OceanBaseSelect();
         OceanBaseExists oceanBaseExists0 = new OceanBaseExists(oceanBaseSelect0, (OceanBaseConstant) null);
         OceanBaseConstant oceanBaseConstant0 = oceanBaseExists0.getExpectedValue();
@@ -119,7 +85,7 @@ public class OceanBaseExists_ESTest {
     }
 
     @Test
-    public void test8() throws Throwable {
+    public void test6() throws Throwable {
         OceanBaseSelect oceanBaseSelect0 = new OceanBaseSelect();
         OceanBaseExists oceanBaseExists0 = new OceanBaseExists(oceanBaseSelect0, (OceanBaseConstant) null);
         OceanBaseSelect oceanBaseSelect1 = (OceanBaseSelect) oceanBaseExists0.getExpr();

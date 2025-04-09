@@ -46,9 +46,4 @@ public class SQLite3IndexGenerator_ESTest {
             //
         }
     }
-
-    @Test
-    public void test2() throws Throwable {
-        SQLite3IndexGenerator sQLite3IndexGenerator0 = new SQLite3IndexGenerator((SQLite3GlobalState) null);
-    }
 }

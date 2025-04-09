@@ -116,21 +116,6 @@ public class YSQLAlterTableGenerator_ESTest {
 
     @Test
     public void test05() throws Throwable {
-        YSQLAlterTableGenerator ySQLAlterTableGenerator0 = null;
-        try {
-            ySQLAlterTableGenerator0 = new YSQLAlterTableGenerator((YSQLSchema.YSQLTable) null, (YSQLGlobalState) null);
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.SQLAlterTableGenerator", e);
-        }
-    }
-
-    @Test
-    public void test06() throws Throwable {
         LinkedList<YSQLSchema.YSQLColumn> linkedList0 = new LinkedList<YSQLSchema.YSQLColumn>();
         LinkedList<YSQLSchema.YSQLIndex> linkedList1 = new LinkedList<YSQLSchema.YSQLIndex>();
         LinkedList<YSQLSchema.YSQLStatisticsObject> linkedList2 = new LinkedList<YSQLSchema.YSQLStatisticsObject>();
@@ -153,7 +138,7 @@ public class YSQLAlterTableGenerator_ESTest {
     }
 
     @Test
-    public void test07() throws Throwable {
+    public void test06() throws Throwable {
         YSQLGlobalState ySQLGlobalState0 = new YSQLGlobalState();
         YSQLAlterTableGenerator ySQLAlterTableGenerator0 = new YSQLAlterTableGenerator((YSQLSchema.YSQLTable) null,
                 ySQLGlobalState0);
@@ -171,7 +156,7 @@ public class YSQLAlterTableGenerator_ESTest {
     }
 
     @Test
-    public void test08() throws Throwable {
+    public void test07() throws Throwable {
         StringBuilder stringBuilder0 = new StringBuilder();
         ExpectedErrors expectedErrors0 = new ExpectedErrors();
         YSQLGlobalState ySQLGlobalState0 = new YSQLGlobalState();

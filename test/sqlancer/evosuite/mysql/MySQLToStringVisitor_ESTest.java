@@ -879,7 +879,6 @@ public class MySQLToStringVisitor_ESTest {
         MySQLAggregate mySQLAggregate0 = new MySQLAggregate(linkedList0, mySQLAggregate_MySQLAggregateFunction0);
         mySQLToStringVisitor0.visit(mySQLAggregate0);
         linkedList0.add((MySQLExpression) mySQLAggregate0);
-        MySQLAggregate.MySQLAggregateFunction mySQLAggregate_MySQLAggregateFunction1 = MySQLAggregate.MySQLAggregateFunction.COUNT;
         mySQLToStringVisitor0.visit(mySQLAggregate0);
     }
 

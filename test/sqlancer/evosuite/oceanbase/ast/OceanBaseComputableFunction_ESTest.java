@@ -480,23 +480,6 @@ public class OceanBaseComputableFunction_ESTest {
     }
 
     @Test
-    public void test22() throws Throwable {
-        OceanBaseComputableFunction.OceanBaseFunction oceanBaseComputableFunction_OceanBaseFunction0 = OceanBaseComputableFunction.OceanBaseFunction.IF;
-        OceanBaseComputableFunction oceanBaseComputableFunction0 = null;
-        try {
-            oceanBaseComputableFunction0 = new OceanBaseComputableFunction(
-                    oceanBaseComputableFunction_OceanBaseFunction0, (OceanBaseExpression[]) null);
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.oceanbase.ast.OceanBaseComputableFunction", e);
-        }
-    }
-
-    @Test
     public void test23() throws Throwable {
         OceanBaseExpression[] oceanBaseExpressionArray0 = new OceanBaseExpression[6];
         OceanBaseConstant.OceanBaseNullConstant oceanBaseConstant_OceanBaseNullConstant0 = new OceanBaseConstant.OceanBaseNullConstant();

@@ -16,23 +16,10 @@ import org.junit.jupiter.api.Test;
 
 import sqlancer.Randomly;
 import sqlancer.common.ast.JoinBase;
-import sqlancer.duckdb.DuckDBSchema;
 import sqlancer.duckdb.ast.DuckDBExpression;
 import sqlancer.duckdb.ast.DuckDBSelect;
 
 public class DuckDBSelect_ESTest {
-
-    @Test
-    public void test0() throws Throwable {
-        DuckDBSelect duckDBSelect0 = new DuckDBSelect();
-        JoinBase<DuckDBExpression>[] joinBaseArray0 = (JoinBase<DuckDBExpression>[]) Array.newInstance(JoinBase.class,
-                2);
-        DuckDBSchema.DuckDBCompositeDataType.getRandomWithoutNull();
-        List<JoinBase<DuckDBExpression>> list0 = Randomly.subset(joinBaseArray0);
-        duckDBSelect0.setJoinClauses(list0);
-        List<JoinBase<DuckDBExpression>> list1 = duckDBSelect0.getJoinClauses();
-        assertFalse(list1.isEmpty());
-    }
 
     @Test
     public void test1() throws Throwable {

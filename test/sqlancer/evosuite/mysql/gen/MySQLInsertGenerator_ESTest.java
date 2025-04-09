@@ -34,13 +34,6 @@ public class MySQLInsertGenerator_ESTest {
 
     @Test
     public void test1() throws Throwable {
-        MySQLGlobalState mySQLGlobalState0 = new MySQLGlobalState();
-        MySQLInsertGenerator mySQLInsertGenerator0 = new MySQLInsertGenerator(mySQLGlobalState0,
-                (MySQLSchema.MySQLTable) null);
-    }
-
-    @Test
-    public void test2() throws Throwable {
         // Undeclared exception!
         try {
             MySQLInsertGenerator.insertRow((MySQLGlobalState) null);
@@ -58,7 +51,7 @@ public class MySQLInsertGenerator_ESTest {
     }
 
     @Test
-    public void test3() throws Throwable {
+    public void test2() throws Throwable {
         MySQLGlobalState mySQLGlobalState0 = new MySQLGlobalState();
         LinkedList<MySQLSchema.MySQLColumn> linkedList0 = new LinkedList<MySQLSchema.MySQLColumn>();
         LinkedList<MySQLSchema.MySQLIndex> linkedList1 = new LinkedList<MySQLSchema.MySQLIndex>();
