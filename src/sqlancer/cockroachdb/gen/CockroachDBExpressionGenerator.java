@@ -267,7 +267,7 @@ public class CockroachDBExpressionGenerator extends
     }
 
     @Override
-    protected CockroachDBCompositeDataType getRandomType() {
+    public CockroachDBCompositeDataType getRandomType() {
         if (columns.isEmpty() || Randomly.getBooleanWithRatherLowProbability()) {
             return CockroachDBCompositeDataType.getRandom();
         } else {
@@ -283,7 +283,7 @@ public class CockroachDBExpressionGenerator extends
     }
 
     @Override
-    protected boolean canGenerateColumnOfType(CockroachDBCompositeDataType type) {
+    public boolean canGenerateColumnOfType(CockroachDBCompositeDataType type) {
         return columns.stream().anyMatch(c -> c.getType() == type);
     }
 
@@ -352,7 +352,7 @@ public class CockroachDBExpressionGenerator extends
     }
 
     @Override
-    protected CockroachDBExpression generateColumn(CockroachDBCompositeDataType type) {
+    public CockroachDBExpression generateColumn(CockroachDBCompositeDataType type) {
         CockroachDBColumn column = Randomly
                 .fromList(columns.stream().filter(c -> c.getType() == type).collect(Collectors.toList()));
         CockroachDBExpression columnReference = new CockroachDBColumnReference(column);
@@ -492,7 +492,7 @@ public class CockroachDBExpressionGenerator extends
         return Randomly.fromList(mutators).apply(select);
     }
 
-    boolean mutateJoin(CockroachDBSelect select) {
+    public boolean mutateJoin(CockroachDBSelect select) {
         if (select.getJoinList().isEmpty()) {
             return false;
         }
@@ -514,13 +514,13 @@ public class CockroachDBExpressionGenerator extends
         return selectAndSetNewJoinType(join, newJoinType);
     }
 
-    boolean mutateDistinct(CockroachDBSelect select) {
+    public boolean mutateDistinct(CockroachDBSelect select) {
         boolean increase = select.isDistinct();
         select.setDistinct(!select.isDistinct());
         return increase;
     }
 
-    boolean mutateWhere(CockroachDBSelect select) {
+    public boolean mutateWhere(CockroachDBSelect select) {
         boolean increase = select.getWhereClause() != null;
         if (increase) {
             select.setWhereClause(null);
@@ -530,7 +530,7 @@ public class CockroachDBExpressionGenerator extends
         return increase;
     }
 
-    boolean mutateGroupBy(CockroachDBSelect select) {
+    public boolean mutateGroupBy(CockroachDBSelect select) {
         boolean increase = select.getGroupByExpressions().size() > 0;
         if (increase) {
             select.clearGroupByExpressions();
@@ -540,7 +540,7 @@ public class CockroachDBExpressionGenerator extends
         return increase;
     }
 
-    boolean mutateHaving(CockroachDBSelect select) {
+    public boolean mutateHaving(CockroachDBSelect select) {
         if (select.getGroupByExpressions().size() == 0) {
             select.setGroupByExpressions(select.getFetchColumns());
             select.setHavingClause(generateExpression(CockroachDBDataType.BOOL.get()));
@@ -556,7 +556,7 @@ public class CockroachDBExpressionGenerator extends
         }
     }
 
-    boolean mutateAnd(CockroachDBSelect select) {
+    public boolean mutateAnd(CockroachDBSelect select) {
         if (select.getWhereClause() == null) {
             select.setWhereClause(generateExpression(CockroachDBDataType.BOOL.get()));
         } else {
@@ -567,7 +567,7 @@ public class CockroachDBExpressionGenerator extends
         return false;
     }
 
-    boolean mutateOr(CockroachDBSelect select) {
+    public boolean mutateOr(CockroachDBSelect select) {
         if (select.getWhereClause() == null) {
             select.setWhereClause(generateExpression(CockroachDBDataType.BOOL.get()));
             return false;
@@ -579,7 +579,7 @@ public class CockroachDBExpressionGenerator extends
         }
     }
 
-    boolean mutateLimit(CockroachDBSelect select) {
+    public boolean mutateLimit(CockroachDBSelect select) {
         boolean increase = select.getLimitClause() != null;
         if (increase) {
             select.setLimitClause(null);

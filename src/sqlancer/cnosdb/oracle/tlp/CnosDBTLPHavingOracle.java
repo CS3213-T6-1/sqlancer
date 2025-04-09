@@ -56,7 +56,7 @@ public class CnosDBTLPHavingOracle extends CnosDBTLPBase {
     }
 
     @Override
-    List<CnosDBExpression> generateFetchColumns() {
+    public List<CnosDBExpression> generateFetchColumns() {
         List<CnosDBExpression> expressions = gen.allowAggregates(true).generateExpressions(Randomly.smallNumber() + 1);
         gen.allowAggregates(false);
         return expressions;

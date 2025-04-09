@@ -177,7 +177,7 @@ public class SQLite3PivotedQuerySynthesisOracle
     }
 
     @Override
-    protected Query<SQLConnection> getContainmentCheckQuery(Query<?> query) throws SQLException {
+    public Query<SQLConnection> getContainmentCheckQuery(Query<?> query) throws SQLException {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT ");
         String checkForContainmentValues = getGeneralizedPivotRowValues();
@@ -347,7 +347,7 @@ public class SQLite3PivotedQuerySynthesisOracle
     }
 
     @Override
-    protected String getExpectedValues(SQLite3Expression expr) {
+    public String getExpectedValues(SQLite3Expression expr) {
         return SQLite3Visitor.asExpectedValues(expr);
     }
 

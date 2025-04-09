@@ -25,16 +25,16 @@ public class QuestDBQueryPartitioningBase
         implements TestOracle<QuestDBGlobalState> {
 
     QuestDBSchema s;
-    QuestDBTable targetTable;
-    QuestDBExpressionGenerator gen;
+    public QuestDBTable targetTable;
+    public QuestDBExpressionGenerator gen;
     QuestDBSelect select;
 
-    protected QuestDBQueryPartitioningBase(QuestDBGlobalState state) {
+    public QuestDBQueryPartitioningBase(QuestDBGlobalState state) {
         super(state);
         QuestDBErrors.addExpressionErrors(errors);
     }
 
-    List<QuestDBExpression> generateFetchColumns() {
+    public List<QuestDBExpression> generateFetchColumns() {
         List<QuestDBExpression> columns = new ArrayList<>();
         if (Randomly.getBoolean()) {
             columns.add(new QuestDBColumnReference(new QuestDBColumn("*", null, false)));
@@ -46,7 +46,7 @@ public class QuestDBQueryPartitioningBase
     }
 
     @Override
-    protected ExpressionGenerator<QuestDBExpression> getGen() {
+    public ExpressionGenerator<QuestDBExpression> getGen() {
         return gen;
     }
 

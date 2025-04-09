@@ -29,7 +29,7 @@ public class CnosDBTLPBase extends TernaryLogicPartitioningOracleBase<CnosDBExpr
         implements TestOracle<CnosDBGlobalState> {
 
     protected CnosDBSchema s;
-    protected CnosDBTables targetTables;
+    public CnosDBTables targetTables;
     protected CnosDBExpressionGenerator gen;
     protected CnosDBSelect select;
 
@@ -70,12 +70,12 @@ public class CnosDBTLPBase extends TernaryLogicPartitioningOracleBase<CnosDBExpr
         generateSelectBase(tables, joins);
     }
 
-    protected List<CnosDBJoin> getJoinStatements(List<CnosDBColumn> columns, List<CnosDBTable> tables) {
+    public List<CnosDBJoin> getJoinStatements(List<CnosDBColumn> columns, List<CnosDBTable> tables) {
         return CnosDBNoRECOracle.getJoinStatements(state, columns, tables);
     }
 
     @SuppressWarnings("unchecked")
-    protected void generateSelectBase(List<CnosDBTable> tables, List<CnosDBJoin> joins) {
+    public void generateSelectBase(List<CnosDBTable> tables, List<CnosDBJoin> joins) {
         List<CnosDBExpression> tableList = tables.stream().map(CnosDBFromTable::new).collect(Collectors.toList());
         gen = new CnosDBExpressionGenerator(state).setColumns(targetTables.getColumns());
         initializeTernaryPredicateVariants();
@@ -86,7 +86,7 @@ public class CnosDBTLPBase extends TernaryLogicPartitioningOracleBase<CnosDBExpr
         select.setJoinClauses((List<JoinBase<CnosDBExpression>>) (List<?>) joins);
     }
 
-    List<CnosDBExpression> generateFetchColumns() {
+    public List<CnosDBExpression> generateFetchColumns() {
         if (Randomly.getBooleanWithRatherLowProbability()) {
             return List.of(new CnosDBColumnValue(CnosDBColumn.createDummy("*")));
         }
@@ -107,7 +107,7 @@ public class CnosDBTLPBase extends TernaryLogicPartitioningOracleBase<CnosDBExpr
     }
 
     @Override
-    protected ExpressionGenerator<CnosDBExpression> getGen() {
+    public ExpressionGenerator<CnosDBExpression> getGen() {
         return gen;
     }
 

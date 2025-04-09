@@ -61,7 +61,7 @@ public class DorisQueryPartitioningHavingTester extends DorisQueryPartitioningBa
     }
 
     @Override
-    List<DorisExpression> generateFetchColumns() {
+    public List<DorisExpression> generateFetchColumns() {
         gen.setAllowAggregateFunctions(true);
         List<DorisExpression> expressions = gen.generateExpressions(Randomly.smallNumber() + 1);
         gen.setAllowAggregateFunctions(false);

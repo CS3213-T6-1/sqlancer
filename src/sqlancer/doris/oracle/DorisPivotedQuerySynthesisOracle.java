@@ -39,7 +39,7 @@ public class DorisPivotedQuerySynthesisOracle
     }
 
     @Override
-    protected Query<SQLConnection> getRectifiedQuery() throws Exception {
+    public Query<SQLConnection> getRectifiedQuery() throws Exception {
         DorisTables randomTables = globalState.getSchema().getRandomTableNonEmptyAndViewTables();
         List<DorisColumn> columns = randomTables.getColumns();
         DorisSelect selectStatement = new DorisSelect();
@@ -88,7 +88,7 @@ public class DorisPivotedQuerySynthesisOracle
     }
 
     @Override
-    protected Query<SQLConnection> getContainmentCheckQuery(Query<?> pivotRowQuery) throws Exception {
+    public Query<SQLConnection> getContainmentCheckQuery(Query<?> pivotRowQuery) throws Exception {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT * FROM (");
         sb.append(pivotRowQuery.getUnterminatedQueryString());
@@ -110,7 +110,7 @@ public class DorisPivotedQuerySynthesisOracle
     }
 
     @Override
-    protected String getExpectedValues(DorisExpression expr) {
+    public String getExpectedValues(DorisExpression expr) {
         return DorisExpectedValueVisitor.asExpectedValues(expr);
     }
 

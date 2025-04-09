@@ -26,13 +26,13 @@ public class YSQLTLPHavingOracle extends YSQLTLPBase {
     }
 
     @Override
-    List<YSQLExpression> generateFetchColumns() {
+    public List<YSQLExpression> generateFetchColumns() {
         List<YSQLExpression> expressions = gen.allowAggregates(true).generateExpressions(Randomly.smallNumber() + 1);
         gen.allowAggregates(false);
         return expressions;
     }
 
-    protected void havingCheck() throws SQLException {
+    public void havingCheck() throws SQLException {
         if (Randomly.getBoolean()) {
             select.setWhereClause(gen.generateExpression(YSQLDataType.BOOLEAN));
         }
@@ -59,7 +59,7 @@ public class YSQLTLPHavingOracle extends YSQLTLPBase {
     }
 
     @Override
-    protected YSQLExpression generatePredicate() {
+    public YSQLExpression generatePredicate() {
         return gen.generateHavingClause();
     }
 

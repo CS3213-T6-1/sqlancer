@@ -38,7 +38,7 @@ public class DorisQueryPartitioningGroupByTester extends DorisQueryPartitioningB
     }
 
     @Override
-    List<DorisExpression> generateFetchColumns() {
+    public List<DorisExpression> generateFetchColumns() {
         return Randomly.nonEmptySubset(targetTables.getColumns()).stream().map(c -> new DorisColumnReference(c))
                 .collect(Collectors.toList());
     }

@@ -26,8 +26,8 @@ public class DuckDBQueryPartitioningBase extends TernaryLogicPartitioningOracleB
         implements TestOracle<DuckDBGlobalState> {
 
     DuckDBSchema s;
-    DuckDBTables targetTables;
-    DuckDBExpressionGenerator gen;
+    public DuckDBTables targetTables;
+    public DuckDBExpressionGenerator gen;
     DuckDBSelect select;
 
     public DuckDBQueryPartitioningBase(DuckDBGlobalState state) {
@@ -52,7 +52,7 @@ public class DuckDBQueryPartitioningBase extends TernaryLogicPartitioningOracleB
         select.setWhereClause(null);
     }
 
-    List<DuckDBExpression> generateFetchColumns() {
+    public List<DuckDBExpression> generateFetchColumns() {
         List<DuckDBExpression> columns = new ArrayList<>();
         if (Randomly.getBoolean()) {
             columns.add(new DuckDBColumnReference(new DuckDBColumn("*", null, false, false)));
@@ -64,7 +64,7 @@ public class DuckDBQueryPartitioningBase extends TernaryLogicPartitioningOracleB
     }
 
     @Override
-    protected ExpressionGenerator<DuckDBExpression> getGen() {
+    public ExpressionGenerator<DuckDBExpression> getGen() {
         return gen;
     }
 

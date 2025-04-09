@@ -1,9 +1,10 @@
-package sqlancer.citus.gen;
+package sqlancer.evosuite.citus.gen;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import sqlancer.citus.gen.CitusUpdateGenerator;
 import sqlancer.postgres.PostgresGlobalState;
 
 //@RunWith(EvoRunner.class) @EvoRunnerParameters(mockJVMNonDeterminism = true, useVFS = true, useVNET = true, resetStaticState = true, separateClassLoader = true)

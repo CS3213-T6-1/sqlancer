@@ -155,12 +155,12 @@ public class MySQLToStringVisitor extends ToStringVisitor<MySQLExpression> imple
     }
 
     @Override
-    protected MySQLExpression getJoinOnClause(JoinBase<MySQLExpression> join) {
+    public MySQLExpression getJoinOnClause(JoinBase<MySQLExpression> join) {
         return null;
     }
 
     @Override
-    protected MySQLExpression getJoinTableReference(JoinBase<MySQLExpression> join) {
+    public MySQLExpression getJoinTableReference(JoinBase<MySQLExpression> join) {
         return null;
     }
 
