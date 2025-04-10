@@ -4,7 +4,7 @@ CREATE TABLE users (
     age INTEGER
 );
 
-INSERT INTO users (name, age) VALUES
+INSERT INTO users (id, name, age) VALUES
 (1, 'Alice', 25),
 (2, 'Bob', 30),
 (3, 'Charlie', 35),
@@ -22,7 +22,7 @@ CREATE TABLE cities (
     population INTEGER
 );
 
-INSERT INTO cities (city_name, population) VALUES
+INSERT INTO cities (id, city_name, population) VALUES
 (1, 'New York', 8000000),
 (2, 'Los Angeles', 4000000),
 (3, 'Chicago', 2700000),
@@ -40,7 +40,7 @@ CREATE TABLE products (
     price REAL
 );
 
-INSERT INTO products (product_name, price) VALUES
+INSERT INTO products (id, product_name, price) VALUES
 (1, 'Laptop', 999.99),
 (2, 'Phone', 699.99),
 (3, 'Tablet', 399.99),
@@ -58,7 +58,7 @@ CREATE TABLE countries (
     capital TEXT
 );
 
-INSERT INTO countries (country_name, capital) VALUES
+INSERT INTO countries (id, country_name, capital) VALUES
 (1, 'USA', 'Washington, D.C.'),
 (2, 'Canada', 'Ottawa'),
 (3, 'UK', 'London'),
@@ -76,7 +76,7 @@ CREATE TABLE books (
     author TEXT
 );
 
-INSERT INTO books (title, author) VALUES
+INSERT INTO books (id, title, author) VALUES
 (1, '1984', 'George Orwell'),
 (2, 'To Kill a Mockingbird', 'Harper Lee'),
 (3, 'The Great Gatsby', 'F. Scott Fitzgerald'),
