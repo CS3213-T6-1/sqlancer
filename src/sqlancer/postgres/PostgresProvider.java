@@ -233,22 +233,34 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
         } catch (URISyntaxException e) {
             throw new AssertionError(e);
         }
+        // Connect to the maintenance database (usually postgres)
         Connection con = DriverManager.getConnection("jdbc:" + entryURL, username, password);
         globalState.getState().logStatement(String.format("\\c %s;", entryDatabaseName));
 
-        try (Statement s = con.createStatement()) {
-            // Terminate all connections to the target database
-            s.execute("SELECT pg_terminate_backend(pg_stat_activity.pid) " + "FROM pg_stat_activity "
-                    + "WHERE pg_stat_activity.datname = '" + databaseName + "' " + "AND pid <> pg_backend_pid();");
+        try {
+            // Put database in single-user mode to prevent new connections
+            try (Statement s = con.createStatement()) {
+                s.execute("ALTER DATABASE " + databaseName + " ALLOW_CONNECTIONS false");
+            } catch (SQLException e) {
+                // Database might not exist, continue with drop attempt
+            }
+
+            // Terminate all connections except our own
+            try (Statement s = con.createStatement()) {
+                s.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity " + "WHERE datname = '" + databaseName
+                        + "' AND pid <> pg_backend_pid()");
+            }
 
             // Now try to drop the database
-            s.execute("DROP DATABASE IF EXISTS " + databaseName);
-        } catch (SQLException e) {
-            // If termination fails, try dropping anyway
-            try {
-                con.createStatement().execute("DROP DATABASE IF EXISTS " + databaseName);
-            } catch (SQLException e2) {
-                // Ignore if drop still fails
+            try (Statement s = con.createStatement()) {
+                s.execute("DROP DATABASE IF EXISTS " + databaseName);
+            }
+        } finally {
+            // Ensure we re-enable connections if something fails
+            try (Statement s = con.createStatement()) {
+                s.execute("ALTER DATABASE " + databaseName + " ALLOW_CONNECTIONS true");
+            } catch (SQLException e) {
+                // Ignore if database doesn't exist
             }
         }
 
@@ -257,14 +269,16 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
         try (Statement s = con.createStatement()) {
             s.execute(createDatabaseCommand);
         }
-        con.close();
 
+        // Connect to the new database
         int databaseIndex = entryURL.indexOf(entryDatabaseName);
         String preDatabaseName = entryURL.substring(0, databaseIndex);
         String postDatabaseName = entryURL.substring(databaseIndex + entryDatabaseName.length());
         testURL = preDatabaseName + databaseName + postDatabaseName;
         globalState.getState().logStatement(String.format("\\c %s;", databaseName));
 
+        // Close maintenance connection and open new connection to target database
+        con.close();
         con = DriverManager.getConnection("jdbc:" + testURL, username, password);
         return new SQLConnection(con);
     }
