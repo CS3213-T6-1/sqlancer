@@ -1,7 +1,10 @@
 package sqlancer.postgres;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -116,7 +119,44 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
 
     @Override
     public void generateDatabase(PostgresGlobalState globalState) throws Exception {
-        generateRandomTables(globalState);
+        String customScriptPath = getCustomScriptPath(globalState);
+        if (customScriptPath != null) {
+            generateCustomTables(globalState, customScriptPath);
+        } else {
+            generateRandomTables(globalState);
+        }
+    }
+
+    @Override
+    protected void generateCustomTables(PostgresGlobalState globalState, String customScriptPath) throws Exception {
+        try {
+            // Read the entire script file
+            String scriptContent = new String(Files.readAllBytes(Paths.get(customScriptPath)));
+
+            // Split into individual statements (simple split on semicolon for
+            // demonstration)
+            // Note: This is a simplistic approach - you might need a proper SQL parser for
+            // complex scripts
+            String[] statements = scriptContent.split(";");
+
+            // Execute each statement
+            for (String statement : statements) {
+                statement = statement.trim();
+                if (!statement.isEmpty()) {
+                    try {
+                        globalState.executeStatement(new SQLQueryAdapter(statement, true));
+                    } catch (IgnoreMeException e) {
+                        // Ignore statements that fail due to expected errors
+                    }
+                }
+            }
+
+            // Commit all changes
+            globalState.executeStatement(new SQLQueryAdapter("COMMIT", true));
+
+        } catch (IOException e) {
+            throw new AssertionError("Error reading custom script file", e);
+        }
     }
 
     @Override
@@ -130,7 +170,8 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
             String[] extensionNames = extensionsList.split(",");
 
             /*
-             * To avoid of a test interference with an extension objects, create them in a separate schema. Of course,
+             * To avoid of a test interference with an extension objects, create them in a
+             * separate schema. Of course,
              * they must be truly relocatable.
              */
             globalState.executeStatement(new SQLQueryAdapter("CREATE SCHEMA extensions;", true));
