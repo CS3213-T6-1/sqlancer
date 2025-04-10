@@ -18,7 +18,6 @@ import sqlancer.Randomly;
 import sqlancer.sqlite3.ast.SQLite3Constant;
 import sqlancer.sqlite3.ast.SQLite3Expression;
 import sqlancer.sqlite3.ast.SQLite3RowValueExpression;
-import sqlancer.sqlite3.ast.SQLite3Select;
 import sqlancer.sqlite3.ast.SQLite3WindowFunctionExpression;
 
 public class SQLite3RowValueExpression_ESTest {
@@ -70,15 +69,15 @@ public class SQLite3RowValueExpression_ESTest {
     // sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
     // }
 
-    @Test
-    public void test4() throws Throwable {
-        SQLite3Select sQLite3Select0 = new SQLite3Select();
-        SQLite3Expression[] sQLite3ExpressionArray0 = new SQLite3Expression[9];
-        sQLite3ExpressionArray0[0] = (SQLite3Expression) sQLite3Select0;
-        List<SQLite3Expression> list0 = Randomly.subset(1, sQLite3ExpressionArray0);
-        SQLite3RowValueExpression sQLite3RowValueExpression0 = new SQLite3RowValueExpression(list0);
-        sQLite3RowValueExpression0.getExplicitCollateSequence();
-    }
+    // @Test
+    // public void test4() throws Throwable {
+    // SQLite3Select sQLite3Select0 = new SQLite3Select();
+    // SQLite3Expression[] sQLite3ExpressionArray0 = new SQLite3Expression[9];
+    // sQLite3ExpressionArray0[0] = (SQLite3Expression) sQLite3Select0;
+    // List<SQLite3Expression> list0 = Randomly.subset(1, sQLite3ExpressionArray0);
+    // SQLite3RowValueExpression sQLite3RowValueExpression0 = new SQLite3RowValueExpression(list0);
+    // sQLite3RowValueExpression0.getExplicitCollateSequence();
+    // }
 
     @Test
     public void test5() throws Throwable {

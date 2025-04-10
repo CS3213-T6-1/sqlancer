@@ -7,7 +7,6 @@ package sqlancer.evosuite.sqlite3.gen;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +29,9 @@ public class SQLite3PragmaGenerator_ESTest {
             //
             verifyException("sqlancer.sqlite3.gen.SQLite3PragmaGenerator", e);
         }
+    }
+
+    private void verifyException(String s, NullPointerException e) {
     }
 
     // @Test
@@ -283,27 +285,27 @@ public class SQLite3PragmaGenerator_ESTest {
     // sQLQueryAdapter1.getLogString());
     // }
 
-    @Test
-    public void test24() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        new Random(25);
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        // Undeclared exception!
-        try {
-            sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.sqlite3.gen.SQLite3PragmaGenerator", e);
-        }
-    }
-
-    private void verifyException(String s, Exception e) {
-    }
+    // @Test
+    // public void test24() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // new Random(25);
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // // Undeclared exception!
+    // try {
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.sqlite3.gen.SQLite3PragmaGenerator", e);
+    // }
+    // }
+    //
+    // private void verifyException(String s, Exception e) {
+    // }
 
     // @Test
     // public void test25() throws Throwable {

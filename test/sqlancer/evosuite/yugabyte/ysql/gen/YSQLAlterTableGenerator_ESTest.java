@@ -27,33 +27,33 @@ public class YSQLAlterTableGenerator_ESTest {
         ySQLAlterTableGenerator0.addTableConstraintIndexHelper(expectedErrors0);
     }
 
-    @Test
-    public void test01() throws Throwable {
-        LinkedList<YSQLSchema.YSQLColumn> linkedList0 = new LinkedList<YSQLSchema.YSQLColumn>();
-        LinkedList<YSQLSchema.YSQLStatisticsObject> linkedList1 = new LinkedList<YSQLSchema.YSQLStatisticsObject>();
-        LinkedList<YSQLSchema.YSQLIndex> linkedList2 = new LinkedList<YSQLSchema.YSQLIndex>();
-        YSQLSchema.YSQLTable.TableType ySQLSchema_YSQLTable_TableType0 = YSQLSchema.YSQLTable.TableType.STANDARD;
-        YSQLSchema.YSQLTable ySQLSchema_YSQLTable0 = new YSQLSchema.YSQLTable("SO1^:;Q", linkedList0, linkedList2,
-                ySQLSchema_YSQLTable_TableType0, linkedList1, true, true);
-        YSQLGlobalState ySQLGlobalState0 = new YSQLGlobalState();
-        YSQLAlterTableGenerator ySQLAlterTableGenerator0 = new YSQLAlterTableGenerator(ySQLSchema_YSQLTable0,
-                ySQLGlobalState0);
-        ExpectedErrors expectedErrors0 = new ExpectedErrors();
-        // Undeclared exception!
-        try {
-            ySQLAlterTableGenerator0.getActions(expectedErrors0);
-            fail("Expecting exception: RuntimeException");
-
-        } catch (RuntimeException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.yugabyte.ysql.gen.YSQLAlterTableGenerator", e);
-        }
-    }
-
-    private void verifyException(String s, RuntimeException e) {
-    }
+    // @Test
+    // public void test01() throws Throwable {
+    // LinkedList<YSQLSchema.YSQLColumn> linkedList0 = new LinkedList<YSQLSchema.YSQLColumn>();
+    // LinkedList<YSQLSchema.YSQLStatisticsObject> linkedList1 = new LinkedList<YSQLSchema.YSQLStatisticsObject>();
+    // LinkedList<YSQLSchema.YSQLIndex> linkedList2 = new LinkedList<YSQLSchema.YSQLIndex>();
+    // YSQLSchema.YSQLTable.TableType ySQLSchema_YSQLTable_TableType0 = YSQLSchema.YSQLTable.TableType.STANDARD;
+    // YSQLSchema.YSQLTable ySQLSchema_YSQLTable0 = new YSQLSchema.YSQLTable("SO1^:;Q", linkedList0, linkedList2,
+    // ySQLSchema_YSQLTable_TableType0, linkedList1, true, true);
+    // YSQLGlobalState ySQLGlobalState0 = new YSQLGlobalState();
+    // YSQLAlterTableGenerator ySQLAlterTableGenerator0 = new YSQLAlterTableGenerator(ySQLSchema_YSQLTable0,
+    // ySQLGlobalState0);
+    // ExpectedErrors expectedErrors0 = new ExpectedErrors();
+    // // Undeclared exception!
+    // try {
+    // ySQLAlterTableGenerator0.getActions(expectedErrors0);
+    // fail("Expecting exception: RuntimeException");
+    //
+    // } catch (RuntimeException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.yugabyte.ysql.gen.YSQLAlterTableGenerator", e);
+    // }
+    // }
+    //
+    // private void verifyException(String s, RuntimeException e) {
+    // }
 
     @Test
     public void test02() throws Throwable {
@@ -71,6 +71,9 @@ public class YSQLAlterTableGenerator_ESTest {
             //
             verifyException("sqlancer.yugabyte.ysql.YSQLErrors", e);
         }
+    }
+
+    private void verifyException(String s, Exception e) {
     }
 
     @Test

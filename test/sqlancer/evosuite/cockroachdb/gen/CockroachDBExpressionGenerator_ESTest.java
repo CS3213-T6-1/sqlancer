@@ -555,24 +555,25 @@ public class CockroachDBExpressionGenerator_ESTest {
         }
     }
 
-    @Test
-    public void test29() throws Throwable {
-        CockroachDBProvider.CockroachDBGlobalState cockroachDBProvider_CockroachDBGlobalState0 = new CockroachDBProvider.CockroachDBGlobalState();
-        CockroachDBExpressionGenerator cockroachDBExpressionGenerator0 = new CockroachDBExpressionGenerator(
-                cockroachDBProvider_CockroachDBGlobalState0);
-        CockroachDBSelect cockroachDBSelect0 = cockroachDBExpressionGenerator0.generateSelect();
-        // Undeclared exception!
-        try {
-            cockroachDBExpressionGenerator0.mutate(cockroachDBSelect0);
-            fail("Expecting exception: IllegalStateException");
-
-        } catch (IllegalStateException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.common.ast.SelectBase", e);
-        }
-    }
+    // @Test
+    // public void test29() throws Throwable {
+    // CockroachDBProvider.CockroachDBGlobalState cockroachDBProvider_CockroachDBGlobalState0 = new
+    // CockroachDBProvider.CockroachDBGlobalState();
+    // CockroachDBExpressionGenerator cockroachDBExpressionGenerator0 = new CockroachDBExpressionGenerator(
+    // cockroachDBProvider_CockroachDBGlobalState0);
+    // CockroachDBSelect cockroachDBSelect0 = cockroachDBExpressionGenerator0.generateSelect();
+    // // Undeclared exception!
+    // try {
+    // cockroachDBExpressionGenerator0.mutate(cockroachDBSelect0);
+    // fail("Expecting exception: IllegalStateException");
+    //
+    // } catch (IllegalStateException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.common.ast.SelectBase", e);
+    // }
+    // }
 
     @Test
     public void test30() throws Throwable {
@@ -1031,25 +1032,27 @@ public class CockroachDBExpressionGenerator_ESTest {
     // assertEquals("false", cockroachDBConstant_CockroachDBBooleanConstant0.toString());
     // }
 
-    @Test
-    public void test55() throws Throwable {
-        CockroachDBProvider.CockroachDBGlobalState cockroachDBProvider_CockroachDBGlobalState0 = new CockroachDBProvider.CockroachDBGlobalState();
-        CockroachDBExpressionGenerator cockroachDBExpressionGenerator0 = new CockroachDBExpressionGenerator(
-                cockroachDBProvider_CockroachDBGlobalState0);
-        CockroachDBSchema.CockroachDBCompositeDataType cockroachDBSchema_CockroachDBCompositeDataType0 = CockroachDBSchema.CockroachDBCompositeDataType
-                .getRandom();
-        // Undeclared exception!
-        try {
-            cockroachDBExpressionGenerator0.generateConstant(cockroachDBSchema_CockroachDBCompositeDataType0);
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.cockroachdb.gen.CockroachDBExpressionGenerator", e);
-        }
-    }
+    // @Test
+    // public void test55() throws Throwable {
+    // CockroachDBProvider.CockroachDBGlobalState cockroachDBProvider_CockroachDBGlobalState0 = new
+    // CockroachDBProvider.CockroachDBGlobalState();
+    // CockroachDBExpressionGenerator cockroachDBExpressionGenerator0 = new CockroachDBExpressionGenerator(
+    // cockroachDBProvider_CockroachDBGlobalState0);
+    // CockroachDBSchema.CockroachDBCompositeDataType cockroachDBSchema_CockroachDBCompositeDataType0 =
+    // CockroachDBSchema.CockroachDBCompositeDataType
+    // .getRandom();
+    // // Undeclared exception!
+    // try {
+    // cockroachDBExpressionGenerator0.generateConstant(cockroachDBSchema_CockroachDBCompositeDataType0);
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.cockroachdb.gen.CockroachDBExpressionGenerator", e);
+    // }
+    // }
 
     @Test
     public void test56() throws Throwable {

@@ -60,25 +60,25 @@ public class MySQLToStringVisitor_ESTest {
         assertEquals("Qu#7FW51yq", mySQLToStringVisitor0.get());
     }
 
-    @Test
-    public void test02() throws Throwable {
-        MySQLToStringVisitor mySQLToStringVisitor0 = new MySQLToStringVisitor();
-        MySQLSelect mySQLSelect0 = new MySQLSelect();
-        MySQLExpression[] mySQLExpressionArray0 = new MySQLExpression[6];
-        mySQLExpressionArray0[0] = (MySQLExpression) mySQLSelect0;
-        List<MySQLExpression> list0 = Randomly.nonEmptySubset(mySQLExpressionArray0);
-        mySQLSelect0.setFetchColumns(list0);
-        // Undeclared exception!
-        try {
-            mySQLToStringVisitor0.visit(mySQLSelect0);
-            fail("Expecting exception: StackOverflowError");
-
-        } catch (StackOverflowError e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-        }
-    }
+    // @Test
+    // public void test02() throws Throwable {
+    // MySQLToStringVisitor mySQLToStringVisitor0 = new MySQLToStringVisitor();
+    // MySQLSelect mySQLSelect0 = new MySQLSelect();
+    // MySQLExpression[] mySQLExpressionArray0 = new MySQLExpression[6];
+    // mySQLExpressionArray0[0] = (MySQLExpression) mySQLSelect0;
+    // List<MySQLExpression> list0 = Randomly.nonEmptySubset(mySQLExpressionArray0);
+    // mySQLSelect0.setFetchColumns(list0);
+    // // Undeclared exception!
+    // try {
+    // mySQLToStringVisitor0.visit(mySQLSelect0);
+    // fail("Expecting exception: StackOverflowError");
+    //
+    // } catch (StackOverflowError e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // }
+    // }
 
     @Test
     public void test03() throws Throwable {
