@@ -170,8 +170,7 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
             String[] extensionNames = extensionsList.split(",");
 
             /*
-             * To avoid of a test interference with an extension objects, create them in a
-             * separate schema. Of course,
+             * To avoid of a test interference with an extension objects, create them in a separate schema. Of course,
              * they must be truly relocatable.
              */
             globalState.executeStatement(new SQLQueryAdapter("CREATE SCHEMA extensions;", true));
