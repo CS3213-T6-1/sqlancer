@@ -119,7 +119,7 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
 
     @Override
     public void generateDatabase(PostgresGlobalState globalState) throws Exception {
-        String customScriptPath = getCustomScriptPath(globalState);
+        String customScriptPath = globalState.getDbmsSpecificOptions().getCustomScriptPath();
         if (customScriptPath != null) {
             generateCustomTables(globalState, customScriptPath);
         } else {
@@ -170,7 +170,8 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
             String[] extensionNames = extensionsList.split(",");
 
             /*
-             * To avoid of a test interference with an extension objects, create them in a separate schema. Of course,
+             * To avoid of a test interference with an extension objects, create them in a
+             * separate schema. Of course,
              * they must be truly relocatable.
              */
             globalState.executeStatement(new SQLQueryAdapter("CREATE SCHEMA extensions;", true));
