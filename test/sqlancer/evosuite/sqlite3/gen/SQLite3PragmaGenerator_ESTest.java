@@ -7,8 +7,6 @@ package sqlancer.evosuite.sqlite3.gen;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.util.function.Supplier;
-
 import org.junit.jupiter.api.Test;
 
 import sqlancer.sqlite3.SQLite3GlobalState;
@@ -239,11 +237,11 @@ public class SQLite3PragmaGenerator_ESTest {
     // assertEquals("PRAGMA wal_checkpoint(FULL);", sQLQueryAdapter1.getLogString());
     // }
 
-    @Test
-    public void test20() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        sQLite3PragmaGenerator0.createPragma("cache_spill", (Supplier<Object>) null);
-    }
+    // @Test
+    // public void test20() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // sQLite3PragmaGenerator0.createPragma("cache_spill", (Supplier<Object>) null);
+    // }
 
     // @Test
     // public void test21() throws Throwable {

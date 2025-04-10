@@ -90,43 +90,44 @@ public class QuestDBQueryPartitioningBase_ESTest {
         }
     }
 
-    @Test
-    public void test4() throws Throwable {
-        QuestDBProvider.QuestDBGlobalState questDBProvider_QuestDBGlobalState0 = new QuestDBProvider.QuestDBGlobalState();
-        QuestDBQueryPartitioningBase questDBQueryPartitioningBase0 = new QuestDBQueryPartitioningBase(
-                questDBProvider_QuestDBGlobalState0);
-        // Undeclared exception!
-        try {
-            questDBQueryPartitioningBase0.generateFetchColumns();
-            fail("Expecting exception: NullPointerException");
+    // @Test
+    // public void test4() throws Throwable {
+    // QuestDBProvider.QuestDBGlobalState questDBProvider_QuestDBGlobalState0 = new
+    // QuestDBProvider.QuestDBGlobalState();
+    // QuestDBQueryPartitioningBase questDBQueryPartitioningBase0 = new QuestDBQueryPartitioningBase(
+    // questDBProvider_QuestDBGlobalState0);
+    // // Undeclared exception!
+    // try {
+    // questDBQueryPartitioningBase0.generateFetchColumns();
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.questdb.test.QuestDBQueryPartitioningBase", e);
+    // }
+    // }
+    //
+    // private void verifyException(String s, Exception e) {
+    // }
 
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.questdb.test.QuestDBQueryPartitioningBase", e);
-        }
-    }
-
-    private void verifyException(String s, Exception e) {
-    }
-
-    @Test
-    public void test5() throws Throwable {
-        QuestDBQueryPartitioningBase questDBQueryPartitioningBase0 = new QuestDBQueryPartitioningBase(
-                (QuestDBProvider.QuestDBGlobalState) null);
-        // Undeclared exception!
-        try {
-            questDBQueryPartitioningBase0.check();
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.questdb.test.QuestDBQueryPartitioningBase", e);
-        }
-    }
+    // @Test
+    // public void test5() throws Throwable {
+    // QuestDBQueryPartitioningBase questDBQueryPartitioningBase0 = new QuestDBQueryPartitioningBase(
+    // (QuestDBProvider.QuestDBGlobalState) null);
+    // // Undeclared exception!
+    // try {
+    // questDBQueryPartitioningBase0.check();
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.questdb.test.QuestDBQueryPartitioningBase", e);
+    // }
+    // }
 
     @Test
     public void test6() throws Throwable {

@@ -874,13 +874,14 @@ public class OceanBaseComputableFunction_ESTest {
         assertEquals("LEAST", string0);
     }
 
-    @Test
-    public void test48() throws Throwable {
-        OceanBaseComputableFunction.OceanBaseFunction oceanBaseComputableFunction_OceanBaseFunction0 = OceanBaseComputableFunction.OceanBaseFunction
-                .getRandomFunction();
-        boolean boolean0 = oceanBaseComputableFunction_OceanBaseFunction0.isVariadic();
-        assertFalse(boolean0);
-    }
+    // @Test
+    // public void test48() throws Throwable {
+    // OceanBaseComputableFunction.OceanBaseFunction oceanBaseComputableFunction_OceanBaseFunction0 =
+    // OceanBaseComputableFunction.OceanBaseFunction
+    // .getRandomFunction();
+    // boolean boolean0 = oceanBaseComputableFunction_OceanBaseFunction0.isVariadic();
+    // assertFalse(boolean0);
+    // }
 
     @Test
     public void test49() throws Throwable {

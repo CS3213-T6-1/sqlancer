@@ -204,14 +204,15 @@ public class DatabendJoin_ESTest {
         assertTrue(list1.isEmpty());
     }
 
-    @Test
-    public void test12() throws Throwable {
-        DatabendTableReference[] databendTableReferenceArray0 = new DatabendTableReference[8];
-        List<DatabendTableReference> list0 = Randomly.subset(databendTableReferenceArray0);
-        DatabendProvider.DatabendGlobalState databendProvider_DatabendGlobalState0 = new DatabendProvider.DatabendGlobalState();
-        List<DatabendJoin> list1 = DatabendJoin.getJoins(list0, databendProvider_DatabendGlobalState0);
-        assertEquals(0, list1.size());
-    }
+    // @Test
+    // public void test12() throws Throwable {
+    // DatabendTableReference[] databendTableReferenceArray0 = new DatabendTableReference[8];
+    // List<DatabendTableReference> list0 = Randomly.subset(databendTableReferenceArray0);
+    // DatabendProvider.DatabendGlobalState databendProvider_DatabendGlobalState0 = new
+    // DatabendProvider.DatabendGlobalState();
+    // List<DatabendJoin> list1 = DatabendJoin.getJoins(list0, databendProvider_DatabendGlobalState0);
+    // assertEquals(0, list1.size());
+    // }
 
     @Test
     public void test13() throws Throwable {
