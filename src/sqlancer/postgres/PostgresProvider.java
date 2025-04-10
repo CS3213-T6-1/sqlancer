@@ -170,8 +170,7 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
             String[] extensionNames = extensionsList.split(",");
 
             /*
-             * To avoid of a test interference with an extension objects, create them in a
-             * separate schema. Of course,
+             * To avoid of a test interference with an extension objects, create them in a separate schema. Of course,
              * they must be truly relocatable.
              */
             globalState.executeStatement(new SQLQueryAdapter("CREATE SCHEMA extensions;", true));
@@ -236,16 +235,30 @@ public class PostgresProvider extends ExpandedProvider<PostgresGlobalState, Post
         }
         Connection con = DriverManager.getConnection("jdbc:" + entryURL, username, password);
         globalState.getState().logStatement(String.format("\\c %s;", entryDatabaseName));
-        globalState.getState().logStatement("DROP DATABASE IF EXISTS " + databaseName);
+
+        try (Statement s = con.createStatement()) {
+            // Terminate all connections to the target database
+            s.execute("SELECT pg_terminate_backend(pg_stat_activity.pid) " + "FROM pg_stat_activity "
+                    + "WHERE pg_stat_activity.datname = '" + databaseName + "' " + "AND pid <> pg_backend_pid();");
+
+            // Now try to drop the database
+            s.execute("DROP DATABASE IF EXISTS " + databaseName);
+        } catch (SQLException e) {
+            // If termination fails, try dropping anyway
+            try {
+                con.createStatement().execute("DROP DATABASE IF EXISTS " + databaseName);
+            } catch (SQLException e2) {
+                // Ignore if drop still fails
+            }
+        }
+
         createDatabaseCommand = getCreateDatabaseCommand(globalState);
         globalState.getState().logStatement(createDatabaseCommand);
-        try (Statement s = con.createStatement()) {
-            s.execute("DROP DATABASE IF EXISTS " + databaseName);
-        }
         try (Statement s = con.createStatement()) {
             s.execute(createDatabaseCommand);
         }
         con.close();
+
         int databaseIndex = entryURL.indexOf(entryDatabaseName);
         String preDatabaseName = entryURL.substring(0, databaseIndex);
         String postDatabaseName = entryURL.substring(databaseIndex + entryDatabaseName.length());
