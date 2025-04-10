@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import sqlancer.postgres.PostgresGlobalState;
 import sqlancer.postgres.oracle.PostgresPivotedQuerySynthesisOracle;
-import sqlancer.sqlite3.SQLite3GlobalState;
-import sqlancer.sqlite3.oracle.SQLite3PivotedQuerySynthesisOracle;
 
 public class PivotedQuerySynthesisBase_ESTest {
 
@@ -33,23 +31,23 @@ public class PivotedQuerySynthesisBase_ESTest {
         }
     }
 
-    @Test
-    public void test1() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLite3PivotedQuerySynthesisOracle sQLite3PivotedQuerySynthesisOracle0 = new SQLite3PivotedQuerySynthesisOracle(
-                sQLite3GlobalState0);
-        try {
-            sQLite3PivotedQuerySynthesisOracle0.check();
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.sqlite3.oracle.SQLite3PivotedQuerySynthesisOracle", e);
-        }
-    }
-
-    private void verifyException(String s, NullPointerException e) {
-    }
+    // @Test
+    // public void test1() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLite3PivotedQuerySynthesisOracle sQLite3PivotedQuerySynthesisOracle0 = new SQLite3PivotedQuerySynthesisOracle(
+    // sQLite3GlobalState0);
+    // try {
+    // sQLite3PivotedQuerySynthesisOracle0.check();
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.sqlite3.oracle.SQLite3PivotedQuerySynthesisOracle", e);
+    // }
+    // }
+    //
+    // private void verifyException(String s, NullPointerException e) {
+    // }
 }

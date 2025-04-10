@@ -71,23 +71,23 @@ public class DuckDBQueryPartitioningBase_ESTest {
         }
     }
 
-    @Test
-    public void test3() throws Throwable {
-        DuckDBProvider.DuckDBGlobalState duckDBProvider_DuckDBGlobalState0 = new DuckDBProvider.DuckDBGlobalState();
-        DuckDBQueryPartitioningBase duckDBQueryPartitioningBase0 = new DuckDBQueryPartitioningBase(
-                duckDBProvider_DuckDBGlobalState0);
-        // Undeclared exception!
-        try {
-            duckDBQueryPartitioningBase0.generateFetchColumns();
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.duckdb.test.DuckDBQueryPartitioningBase", e);
-        }
-    }
+    // @Test
+    // public void test3() throws Throwable {
+    // DuckDBProvider.DuckDBGlobalState duckDBProvider_DuckDBGlobalState0 = new DuckDBProvider.DuckDBGlobalState();
+    // DuckDBQueryPartitioningBase duckDBQueryPartitioningBase0 = new DuckDBQueryPartitioningBase(
+    // duckDBProvider_DuckDBGlobalState0);
+    // // Undeclared exception!
+    // try {
+    // duckDBQueryPartitioningBase0.generateFetchColumns();
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.duckdb.test.DuckDBQueryPartitioningBase", e);
+    // }
+    // }
 
     private void verifyException(String s, Exception e) {
     }

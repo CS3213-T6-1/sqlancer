@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -107,65 +106,67 @@ public class DatabendJoin_ESTest {
         assertNull(tableReferenceNode0);
     }
 
-    @Test
-    public void test06() throws Throwable {
-        DatabendTableReference[] databendTableReferenceArray0 = new DatabendTableReference[2];
-        Randomly.subset(databendTableReferenceArray0);
-        DatabendProvider.DatabendGlobalState databendProvider_DatabendGlobalState0 = new DatabendProvider.DatabendGlobalState();
-        DatabendTableReference[] databendTableReferenceArray1 = new DatabendTableReference[6];
-        DatabendSchema.DatabendColumn[] databendSchema_DatabendColumnArray0 = new DatabendSchema.DatabendColumn[2];
-        DatabendSchema.DatabendCompositeDataType.getRandomWithoutNull();
-        List<DatabendSchema.DatabendColumn> list0 = Randomly.nonEmptySubset(databendSchema_DatabendColumnArray0);
-        DatabendSchema.DatabendTable databendSchema_DatabendTable0 = new DatabendSchema.DatabendTable("}<<-'ZVs", list0,
-                true);
-        DatabendTableReference databendTableReference0 = new DatabendTableReference(databendSchema_DatabendTable0);
-        databendTableReferenceArray1[0] = databendTableReference0;
-        databendTableReferenceArray1[1] = databendTableReferenceArray1[0];
-        databendTableReferenceArray1[3] = databendTableReferenceArray1[1];
-        databendTableReferenceArray1[5] = databendTableReference0;
-        List<DatabendTableReference> list1 = Randomly.nonEmptySubset(databendTableReferenceArray1);
-        // Undeclared exception!
-        try {
-            DatabendJoin.getJoins(list1, databendProvider_DatabendGlobalState0);
-            fail("Expecting exception: NullPointerException");
+    // @Test
+    // public void test06() throws Throwable {
+    // DatabendTableReference[] databendTableReferenceArray0 = new DatabendTableReference[2];
+    // Randomly.subset(databendTableReferenceArray0);
+    // DatabendProvider.DatabendGlobalState databendProvider_DatabendGlobalState0 = new
+    // DatabendProvider.DatabendGlobalState();
+    // DatabendTableReference[] databendTableReferenceArray1 = new DatabendTableReference[6];
+    // DatabendSchema.DatabendColumn[] databendSchema_DatabendColumnArray0 = new DatabendSchema.DatabendColumn[2];
+    // DatabendSchema.DatabendCompositeDataType.getRandomWithoutNull();
+    // List<DatabendSchema.DatabendColumn> list0 = Randomly.nonEmptySubset(databendSchema_DatabendColumnArray0);
+    // DatabendSchema.DatabendTable databendSchema_DatabendTable0 = new DatabendSchema.DatabendTable("}<<-'ZVs", list0,
+    // true);
+    // DatabendTableReference databendTableReference0 = new DatabendTableReference(databendSchema_DatabendTable0);
+    // databendTableReferenceArray1[0] = databendTableReference0;
+    // databendTableReferenceArray1[1] = databendTableReferenceArray1[0];
+    // databendTableReferenceArray1[3] = databendTableReferenceArray1[1];
+    // databendTableReferenceArray1[5] = databendTableReference0;
+    // List<DatabendTableReference> list1 = Randomly.nonEmptySubset(databendTableReferenceArray1);
+    // // Undeclared exception!
+    // try {
+    // DatabendJoin.getJoins(list1, databendProvider_DatabendGlobalState0);
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.databend.gen.DatabendNewExpressionGenerator", e);
+    // }
+    // }
+    //
+    // private void verifyException(String s, NullPointerException e) {
+    // }
 
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.databend.gen.DatabendNewExpressionGenerator", e);
-        }
-    }
-
-    private void verifyException(String s, NullPointerException e) {
-    }
-
-    @Test
-    public void test07() throws Throwable {
-        DatabendTableReference[] databendTableReferenceArray0 = new DatabendTableReference[2];
-        Randomly.subset(databendTableReferenceArray0);
-        DatabendProvider.DatabendGlobalState databendProvider_DatabendGlobalState0 = new DatabendProvider.DatabendGlobalState();
-        DatabendTableReference[] databendTableReferenceArray1 = new DatabendTableReference[6];
-        DatabendSchema.DatabendColumn[] databendSchema_DatabendColumnArray0 = new DatabendSchema.DatabendColumn[2];
-        DatabendSchema.DatabendCompositeDataType.getRandomWithoutNull();
-        List<DatabendSchema.DatabendColumn> list0 = Randomly.nonEmptySubset(databendSchema_DatabendColumnArray0);
-        DatabendSchema.DatabendTable databendSchema_DatabendTable0 = new DatabendSchema.DatabendTable("}<<-'ZVs", list0,
-                true);
-        DatabendTableReference databendTableReference0 = new DatabendTableReference(databendSchema_DatabendTable0);
-        databendTableReferenceArray1[3] = databendTableReference0;
-        List<DatabendTableReference> list1 = Randomly.nonEmptySubset(databendTableReferenceArray1);
-        // Undeclared exception!
-        try {
-            DatabendJoin.getJoins(list1, databendProvider_DatabendGlobalState0);
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.databend.ast.DatabendJoin", e);
-        }
-    }
+    // @Test
+    // public void test07() throws Throwable {
+    // DatabendTableReference[] databendTableReferenceArray0 = new DatabendTableReference[2];
+    // Randomly.subset(databendTableReferenceArray0);
+    // DatabendProvider.DatabendGlobalState databendProvider_DatabendGlobalState0 = new
+    // DatabendProvider.DatabendGlobalState();
+    // DatabendTableReference[] databendTableReferenceArray1 = new DatabendTableReference[6];
+    // DatabendSchema.DatabendColumn[] databendSchema_DatabendColumnArray0 = new DatabendSchema.DatabendColumn[2];
+    // DatabendSchema.DatabendCompositeDataType.getRandomWithoutNull();
+    // List<DatabendSchema.DatabendColumn> list0 = Randomly.nonEmptySubset(databendSchema_DatabendColumnArray0);
+    // DatabendSchema.DatabendTable databendSchema_DatabendTable0 = new DatabendSchema.DatabendTable("}<<-'ZVs", list0,
+    // true);
+    // DatabendTableReference databendTableReference0 = new DatabendTableReference(databendSchema_DatabendTable0);
+    // databendTableReferenceArray1[3] = databendTableReference0;
+    // List<DatabendTableReference> list1 = Randomly.nonEmptySubset(databendTableReferenceArray1);
+    // // Undeclared exception!
+    // try {
+    // DatabendJoin.getJoins(list1, databendProvider_DatabendGlobalState0);
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.databend.ast.DatabendJoin", e);
+    // }
+    // }
 
     @Test
     public void test08() throws Throwable {

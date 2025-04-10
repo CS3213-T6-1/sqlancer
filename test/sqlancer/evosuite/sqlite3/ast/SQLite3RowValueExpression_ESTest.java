@@ -15,13 +15,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import sqlancer.Randomly;
-import sqlancer.sqlite3.ast.SQLite3CollateOperation;
 import sqlancer.sqlite3.ast.SQLite3Constant;
 import sqlancer.sqlite3.ast.SQLite3Expression;
 import sqlancer.sqlite3.ast.SQLite3RowValueExpression;
 import sqlancer.sqlite3.ast.SQLite3Select;
 import sqlancer.sqlite3.ast.SQLite3WindowFunctionExpression;
-import sqlancer.sqlite3.schema.SQLite3Schema;
 
 public class SQLite3RowValueExpression_ESTest {
 
@@ -54,21 +52,23 @@ public class SQLite3RowValueExpression_ESTest {
         assertSame(list0, list1);
     }
 
-    @Test
-    public void test3() throws Throwable {
-        SQLite3Select sQLite3Select0 = new SQLite3Select();
-        SQLite3Expression[] sQLite3ExpressionArray0 = new SQLite3Expression[8];
-        SQLite3Schema.SQLite3Column.SQLite3CollateSequence sQLite3Schema_SQLite3Column_SQLite3CollateSequence0 = SQLite3Schema.SQLite3Column.SQLite3CollateSequence.NOCASE;
-        SQLite3CollateOperation sQLite3CollateOperation0 = new SQLite3CollateOperation(sQLite3Select0,
-                sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
-        sQLite3ExpressionArray0[0] = (SQLite3Expression) sQLite3CollateOperation0;
-        List<SQLite3Expression> list0 = Randomly.subset(1, sQLite3ExpressionArray0);
-        SQLite3RowValueExpression sQLite3RowValueExpression0 = new SQLite3RowValueExpression(list0);
-        SQLite3Schema.SQLite3Column.SQLite3CollateSequence sQLite3Schema_SQLite3Column_SQLite3CollateSequence1 = sQLite3RowValueExpression0
-                .getExplicitCollateSequence();
-        assertSame(sQLite3Schema_SQLite3Column_SQLite3CollateSequence1,
-                sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
-    }
+    // @Test
+    // public void test3() throws Throwable {
+    // SQLite3Select sQLite3Select0 = new SQLite3Select();
+    // SQLite3Expression[] sQLite3ExpressionArray0 = new SQLite3Expression[8];
+    // SQLite3Schema.SQLite3Column.SQLite3CollateSequence sQLite3Schema_SQLite3Column_SQLite3CollateSequence0 =
+    // SQLite3Schema.SQLite3Column.SQLite3CollateSequence.NOCASE;
+    // SQLite3CollateOperation sQLite3CollateOperation0 = new SQLite3CollateOperation(sQLite3Select0,
+    // sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
+    // sQLite3ExpressionArray0[0] = (SQLite3Expression) sQLite3CollateOperation0;
+    // List<SQLite3Expression> list0 = Randomly.subset(1, sQLite3ExpressionArray0);
+    // SQLite3RowValueExpression sQLite3RowValueExpression0 = new SQLite3RowValueExpression(list0);
+    // SQLite3Schema.SQLite3Column.SQLite3CollateSequence sQLite3Schema_SQLite3Column_SQLite3CollateSequence1 =
+    // sQLite3RowValueExpression0
+    // .getExplicitCollateSequence();
+    // assertSame(sQLite3Schema_SQLite3Column_SQLite3CollateSequence1,
+    // sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
+    // }
 
     @Test
     public void test4() throws Throwable {

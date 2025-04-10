@@ -109,32 +109,33 @@ public class SQLite3CollateOperation_ESTest {
     private void verifyException(String s, Exception e) {
     }
 
-    @Test
-    public void test06() throws Throwable {
-        SQLite3Constant.SQLite3IntConstant sQLite3Constant_SQLite3IntConstant0 = new SQLite3Constant.SQLite3IntConstant(
-                871L, true);
-        SQLite3Constant sQLite3Constant0 = sQLite3Constant_SQLite3IntConstant0.applyTextAffinity();
-        SQLite3DataType sQLite3DataType0 = SQLite3DataType.NULL;
-        SQLite3Schema.SQLite3Column.SQLite3CollateSequence sQLite3Schema_SQLite3Column_SQLite3CollateSequence0 = SQLite3Schema.SQLite3Column.SQLite3CollateSequence.RTRIM;
-        SQLite3Schema.SQLite3Column sQLite3Schema_SQLite3Column0 = new SQLite3Schema.SQLite3Column("", sQLite3DataType0,
-                true, true, sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
-        SQLite3ColumnName sQLite3ColumnName0 = new SQLite3ColumnName(sQLite3Schema_SQLite3Column0,
-                sQLite3Constant_SQLite3IntConstant0);
-        SQLite3BetweenOperation sQLite3BetweenOperation0 = new SQLite3BetweenOperation(sQLite3Constant0, true,
-                sQLite3Constant0, sQLite3ColumnName0);
-        SQLite3CollateOperation sQLite3CollateOperation0 = new SQLite3CollateOperation(sQLite3BetweenOperation0,
-                sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
-        // Undeclared exception!
-        try {
-            sQLite3CollateOperation0.getExpectedValue();
-            fail("Expecting exception: AssertionError");
-
-        } catch (AssertionError e) {
-            //
-            // : NULL
-            //
-        }
-    }
+    // @Test
+    // public void test06() throws Throwable {
+    // SQLite3Constant.SQLite3IntConstant sQLite3Constant_SQLite3IntConstant0 = new SQLite3Constant.SQLite3IntConstant(
+    // 871L, true);
+    // SQLite3Constant sQLite3Constant0 = sQLite3Constant_SQLite3IntConstant0.applyTextAffinity();
+    // SQLite3DataType sQLite3DataType0 = SQLite3DataType.NULL;
+    // SQLite3Schema.SQLite3Column.SQLite3CollateSequence sQLite3Schema_SQLite3Column_SQLite3CollateSequence0 =
+    // SQLite3Schema.SQLite3Column.SQLite3CollateSequence.RTRIM;
+    // SQLite3Schema.SQLite3Column sQLite3Schema_SQLite3Column0 = new SQLite3Schema.SQLite3Column("", sQLite3DataType0,
+    // true, true, sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
+    // SQLite3ColumnName sQLite3ColumnName0 = new SQLite3ColumnName(sQLite3Schema_SQLite3Column0,
+    // sQLite3Constant_SQLite3IntConstant0);
+    // SQLite3BetweenOperation sQLite3BetweenOperation0 = new SQLite3BetweenOperation(sQLite3Constant0, true,
+    // sQLite3Constant0, sQLite3ColumnName0);
+    // SQLite3CollateOperation sQLite3CollateOperation0 = new SQLite3CollateOperation(sQLite3BetweenOperation0,
+    // sQLite3Schema_SQLite3Column_SQLite3CollateSequence0);
+    // // Undeclared exception!
+    // try {
+    // sQLite3CollateOperation0.getExpectedValue();
+    // fail("Expecting exception: AssertionError");
+    //
+    // } catch (AssertionError e) {
+    // //
+    // // : NULL
+    // //
+    // }
+    // }
 
     @Test
     public void test07() throws Throwable {

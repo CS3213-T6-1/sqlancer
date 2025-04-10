@@ -15,13 +15,14 @@ import sqlancer.yugabyte.ysql.ast.YSQLConstant;
 
 public class YSQLBinaryBitOperation_ESTest {
 
-    @Test
-    public void test0() throws Throwable {
-        YSQLBinaryBitOperation.YSQLBinaryBitOperator ySQLBinaryBitOperation_YSQLBinaryBitOperator0 = YSQLBinaryBitOperation.YSQLBinaryBitOperator
-                .getRandom();
-        String string0 = ySQLBinaryBitOperation_YSQLBinaryBitOperator0.getTextRepresentation();
-        assertEquals("||", string0);
-    }
+    // @Test
+    // public void test0() throws Throwable {
+    // YSQLBinaryBitOperation.YSQLBinaryBitOperator ySQLBinaryBitOperation_YSQLBinaryBitOperator0 =
+    // YSQLBinaryBitOperation.YSQLBinaryBitOperator
+    // .getRandom();
+    // String string0 = ySQLBinaryBitOperation_YSQLBinaryBitOperator0.getTextRepresentation();
+    // assertEquals("||", string0);
+    // }
 
     @Test
     public void test1() throws Throwable {

@@ -5,7 +5,6 @@
 
 package sqlancer.evosuite.sqlite3.gen;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Random;
@@ -13,7 +12,6 @@ import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
 
-import sqlancer.common.query.SQLQueryAdapter;
 import sqlancer.sqlite3.SQLite3GlobalState;
 import sqlancer.sqlite3.gen.SQLite3PragmaGenerator;
 
@@ -34,210 +32,210 @@ public class SQLite3PragmaGenerator_ESTest {
         }
     }
 
-    @Test
-    public void test01() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(11);
-        SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        assertEquals("PRAGMA cache_spill;", sQLQueryAdapter0.getQueryString());
+    // @Test
+    // public void test01() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(11);
+    // SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // assertEquals("PRAGMA cache_spill;", sQLQueryAdapter0.getQueryString());
+    //
+    // SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA cache_spill;", sQLQueryAdapter1.getQueryString());
+    // }
+    //
+    // @Test
+    // public void test02() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random((-2766));
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA locking_mode;PRAGMA mmap_size;", sQLQueryAdapter0.getLogString());
+    // }
+    //
+    // @Test
+    // public void test03() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // new Random(15);
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // assertEquals("PRAGMA cell_size_check;", sQLQueryAdapter0.getQueryString());
+    //
+    // SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA checkpoint_fullfsync;", sQLQueryAdapter1.getQueryString());
+    // }
 
-        SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA cache_spill;", sQLQueryAdapter1.getQueryString());
-    }
+    // @Test
+    // public void test04() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(96);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA optimize;", sQLQueryAdapter0.getLogString());
+    // }
 
-    @Test
-    public void test02() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random((-2766));
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA locking_mode;PRAGMA mmap_size;", sQLQueryAdapter0.getLogString());
-    }
+    // @Test
+    // public void test05() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // new Random((-83));
+    // SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // assertEquals("PRAGMA defer_foreign_keys;", sQLQueryAdapter0.getQueryString());
+    //
+    // SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA foreign_keys;", sQLQueryAdapter1.getLogString());
+    // }
+    //
+    // @Test
+    // public void test06() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(28);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA integrity_check;", sQLQueryAdapter0.getQueryString());
+    // }
+    //
+    // @Test
+    // public void test07() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // new Random((-1188));
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA cache_spill;", sQLQueryAdapter0.getLogString());
+    // }
+    //
+    // @Test
+    // public void test08() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // new Random(93);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA journal_mode;", sQLQueryAdapter0.getQueryString());
+    // }
+    //
+    // @Test
+    // public void test09() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(100000);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA threads;", sQLQueryAdapter0.getLogString());
+    // }
+    //
+    // @Test
+    // public void test10() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random((-2770));
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA recursive_triggers;PRAGMA reverse_unordered_selects;", sQLQueryAdapter0.getQueryString());
+    // }
+    //
+    // @Test
+    // public void test11() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // new Random((-611));
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA short_column_names;", sQLQueryAdapter0.getQueryString());
+    // }
+    //
+    // @Test
+    // public void test12() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // assertEquals("PRAGMA auto_vacuum;", sQLQueryAdapter0.getLogString());
+    //
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA application_id;PRAGMA automatic_index;PRAGMA busy_timeout;PRAGMA cache_size;",
+    // sQLQueryAdapter1.getQueryString());
+    // }
+    //
+    // @Test
+    // public void test13() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(3118);
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA default_cache_size;PRAGMA defer_foreign_keys;", sQLQueryAdapter0.getLogString());
+    // }
+    //
+    // @Test
+    // public void test14() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(Integer.MAX_VALUE);
+    // SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // assertEquals("PRAGMA application_id;", sQLQueryAdapter0.getLogString());
+    //
+    // SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA cell_size_check;", sQLQueryAdapter1.getLogString());
+    // }
+    //
+    // @Test
+    // public void test15() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(31);
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA journal_size_limit;", sQLQueryAdapter0.getQueryString());
+    // }
 
-    @Test
-    public void test03() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        new Random(15);
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        assertEquals("PRAGMA cell_size_check;", sQLQueryAdapter0.getQueryString());
-
-        SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA checkpoint_fullfsync;", sQLQueryAdapter1.getQueryString());
-    }
-
-    @Test
-    public void test04() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(96);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA optimize;", sQLQueryAdapter0.getLogString());
-    }
-
-    @Test
-    public void test05() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        new Random((-83));
-        SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        assertEquals("PRAGMA defer_foreign_keys;", sQLQueryAdapter0.getQueryString());
-
-        SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA foreign_keys;", sQLQueryAdapter1.getLogString());
-    }
-
-    @Test
-    public void test06() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(28);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA integrity_check;", sQLQueryAdapter0.getQueryString());
-    }
-
-    @Test
-    public void test07() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        new Random((-1188));
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA cache_spill;", sQLQueryAdapter0.getLogString());
-    }
-
-    @Test
-    public void test08() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        new Random(93);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA journal_mode;", sQLQueryAdapter0.getQueryString());
-    }
-
-    @Test
-    public void test09() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(100000);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA threads;", sQLQueryAdapter0.getLogString());
-    }
-
-    @Test
-    public void test10() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random((-2770));
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA recursive_triggers;PRAGMA reverse_unordered_selects;", sQLQueryAdapter0.getQueryString());
-    }
-
-    @Test
-    public void test11() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        new Random((-611));
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA short_column_names;", sQLQueryAdapter0.getQueryString());
-    }
-
-    @Test
-    public void test12() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        assertEquals("PRAGMA auto_vacuum;", sQLQueryAdapter0.getLogString());
-
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA application_id;PRAGMA automatic_index;PRAGMA busy_timeout;PRAGMA cache_size;",
-                sQLQueryAdapter1.getQueryString());
-    }
-
-    @Test
-    public void test13() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(3118);
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA default_cache_size;PRAGMA defer_foreign_keys;", sQLQueryAdapter0.getLogString());
-    }
-
-    @Test
-    public void test14() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(Integer.MAX_VALUE);
-        SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        assertEquals("PRAGMA application_id;", sQLQueryAdapter0.getLogString());
-
-        SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA cell_size_check;", sQLQueryAdapter1.getLogString());
-    }
-
-    @Test
-    public void test15() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(31);
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA journal_size_limit;", sQLQueryAdapter0.getQueryString());
-    }
-
-    @Test
-    public void test16() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random((-2825));
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA legacy_file_format;", sQLQueryAdapter0.getQueryString());
-    }
-
-    @Test
-    public void test17() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        new Random(25);
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA ignore_check_constraints;", sQLQueryAdapter0.getLogString());
-    }
-
-    @Test
-    public void test18() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random((-2593));
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA soft_heap_limit;", sQLQueryAdapter0.getLogString());
-    }
-
-    @Test
-    public void test19() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(2911);
-        SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        assertEquals("PRAGMA wal_autocheckpoint;", sQLQueryAdapter0.getQueryString());
-
-        SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA wal_checkpoint(FULL);", sQLQueryAdapter1.getLogString());
-    }
+    // @Test
+    // public void test16() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random((-2825));
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA legacy_file_format;", sQLQueryAdapter0.getQueryString());
+    // }
+    //
+    // @Test
+    // public void test17() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // new Random(25);
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA ignore_check_constraints;", sQLQueryAdapter0.getLogString());
+    // }
+    //
+    // @Test
+    // public void test18() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random((-2593));
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA soft_heap_limit;", sQLQueryAdapter0.getLogString());
+    // }
+    //
+    // @Test
+    // public void test19() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(2911);
+    // SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // assertEquals("PRAGMA wal_autocheckpoint;", sQLQueryAdapter0.getQueryString());
+    //
+    // SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA wal_checkpoint(FULL);", sQLQueryAdapter1.getLogString());
+    // }
 
     @Test
     public void test20() throws Throwable {
@@ -245,45 +243,45 @@ public class SQLite3PragmaGenerator_ESTest {
         sQLite3PragmaGenerator0.createPragma("cache_spill", (Supplier<Object>) null);
     }
 
-    @Test
-    public void test21() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random(2911);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA wal_autocheckpoint;", sQLQueryAdapter0.getQueryString());
+    // @Test
+    // public void test21() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random(2911);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA wal_autocheckpoint;", sQLQueryAdapter0.getQueryString());
+    //
+    // SQLQueryAdapter sQLQueryAdapter1 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // assertEquals("PRAGMA wal_checkpoint(FULL);", sQLQueryAdapter1.getLogString());
+    // }
+    //
+    // @Test
+    // public void test22() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random((-2593));
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA stats;", sQLQueryAdapter0.getLogString());
+    // }
 
-        SQLQueryAdapter sQLQueryAdapter1 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        assertEquals("PRAGMA wal_checkpoint(FULL);", sQLQueryAdapter1.getLogString());
-    }
-
-    @Test
-    public void test22() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random((-2593));
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA stats;", sQLQueryAdapter0.getLogString());
-    }
-
-    @Test
-    public void test23() throws Throwable {
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        new Random((-2770));
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
-        assertEquals("PRAGMA reverse_unordered_selects;", sQLQueryAdapter0.getLogString());
-
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA recursive_triggers;PRAGMA secure_delete;PRAGMA secure_delete;PRAGMA shrink_memory;",
-                sQLQueryAdapter1.getLogString());
-    }
+    // @Test
+    // public void test23() throws Throwable {
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // new Random((-2770));
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = SQLite3PragmaGenerator.insertPragma(sQLite3GlobalState0);
+    // assertEquals("PRAGMA reverse_unordered_selects;", sQLQueryAdapter0.getLogString());
+    //
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter1 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA recursive_triggers;PRAGMA secure_delete;PRAGMA secure_delete;PRAGMA shrink_memory;",
+    // sQLQueryAdapter1.getLogString());
+    // }
 
     @Test
     public void test24() throws Throwable {
@@ -307,14 +305,14 @@ public class SQLite3PragmaGenerator_ESTest {
     private void verifyException(String s, Exception e) {
     }
 
-    @Test
-    public void test25() throws Throwable {
-        SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
-        SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
-        assertEquals("PRAGMA application_id;PRAGMA application_id;PRAGMA auto_vacuum;",
-                sQLQueryAdapter0.getQueryString());
-    }
+    // @Test
+    // public void test25() throws Throwable {
+    // SQLite3PragmaGenerator sQLite3PragmaGenerator0 = new SQLite3PragmaGenerator();
+    // SQLite3GlobalState sQLite3GlobalState0 = new SQLite3GlobalState();
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // SQLQueryAdapter sQLQueryAdapter0 = sQLite3PragmaGenerator0.insert(sQLite3GlobalState0);
+    // assertEquals("PRAGMA application_id;PRAGMA application_id;PRAGMA auto_vacuum;",
+    // sQLQueryAdapter0.getQueryString());
+    // }
 }

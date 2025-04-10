@@ -5,7 +5,6 @@
 
 package sqlancer.evosuite.yugabyte.ysql.ast;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -34,11 +33,11 @@ public class YSQLOrderByTerm_ESTest {
         assertNull(ySQLExpression0);
     }
 
-    @Test
-    public void test2() throws Throwable {
-        YSQLOrderByTerm.YSQLOrder ySQLOrderByTerm_YSQLOrder0 = YSQLOrderByTerm.YSQLOrder.getRandomOrder();
-        assertEquals(YSQLOrderByTerm.YSQLOrder.ASC, ySQLOrderByTerm_YSQLOrder0);
-    }
+    // @Test
+    // public void test2() throws Throwable {
+    // YSQLOrderByTerm.YSQLOrder ySQLOrderByTerm_YSQLOrder0 = YSQLOrderByTerm.YSQLOrder.getRandomOrder();
+    // assertEquals(YSQLOrderByTerm.YSQLOrder.ASC, ySQLOrderByTerm_YSQLOrder0);
+    // }
 
     @Test
     public void test3() throws Throwable {

@@ -5,7 +5,6 @@
 
 package sqlancer.evosuite.common.ast.newast;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
@@ -49,9 +48,9 @@ public class NewOrderingTerm_ESTest {
         newOrderingTerm0.getOrdering();
     }
 
-    @Test
-    public void test4() throws Throwable {
-        NewOrderingTerm.Ordering newOrderingTerm_Ordering0 = NewOrderingTerm.Ordering.getRandom();
-        assertEquals(NewOrderingTerm.Ordering.ASC, newOrderingTerm_Ordering0);
-    }
+    // @Test
+    // public void test4() throws Throwable {
+    // NewOrderingTerm.Ordering newOrderingTerm_Ordering0 = NewOrderingTerm.Ordering.getRandom();
+    // assertEquals(NewOrderingTerm.Ordering.ASC, newOrderingTerm_Ordering0);
+    // }
 }

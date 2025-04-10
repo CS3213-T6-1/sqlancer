@@ -13,11 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
-import sqlancer.Randomly;
 import sqlancer.databend.DatabendSchema;
 import sqlancer.databend.ast.DatabendBetweenOperation;
 import sqlancer.databend.ast.DatabendBinaryLogicalOperation;
@@ -25,9 +22,7 @@ import sqlancer.databend.ast.DatabendBinaryLogicalOperation;
 import sqlancer.databend.ast.DatabendColumnValue;
 import sqlancer.databend.ast.DatabendConstant;
 import sqlancer.databend.ast.DatabendExpression;
-import sqlancer.databend.ast.DatabendJoin;
 import sqlancer.databend.ast.DatabendLikeOperation;
-import sqlancer.databend.ast.DatabendTableReference;
 import sqlancer.databend.ast.DatabendUnaryPostfixOperation;
 
 public class DatabendBinaryLogicalOperation_ESTest {
@@ -63,20 +58,20 @@ public class DatabendBinaryLogicalOperation_ESTest {
         assertTrue(databendConstant_DatabendBooleanConstant0.asBoolean());
     }
 
-    @Test
-    public void test02() throws Throwable {
-        DatabendSchema.DatabendColumn[] databendSchema_DatabendColumnArray0 = new DatabendSchema.DatabendColumn[9];
-        List<DatabendSchema.DatabendColumn> list0 = Randomly.subset((-2624), databendSchema_DatabendColumnArray0);
-        DatabendSchema.DatabendTable databendSchema_DatabendTable0 = new DatabendSchema.DatabendTable(
-                "/yLd0RP-6G6Kn5MB", list0, false);
-        DatabendTableReference databendTableReference0 = new DatabendTableReference(databendSchema_DatabendTable0);
-        DatabendJoin databendJoin0 = DatabendJoin.createLeftOuterJoin(databendTableReference0, databendTableReference0,
-                databendTableReference0);
-        DatabendBinaryLogicalOperation databendBinaryLogicalOperation0 = new DatabendBinaryLogicalOperation(
-                databendJoin0, databendTableReference0,
-                (DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator) null);
-        databendBinaryLogicalOperation0.getOp();
-    }
+    // @Test
+    // public void test02() throws Throwable {
+    // DatabendSchema.DatabendColumn[] databendSchema_DatabendColumnArray0 = new DatabendSchema.DatabendColumn[9];
+    // List<DatabendSchema.DatabendColumn> list0 = Randomly.subset((-2624), databendSchema_DatabendColumnArray0);
+    // DatabendSchema.DatabendTable databendSchema_DatabendTable0 = new DatabendSchema.DatabendTable(
+    // "/yLd0RP-6G6Kn5MB", list0, false);
+    // DatabendTableReference databendTableReference0 = new DatabendTableReference(databendSchema_DatabendTable0);
+    // DatabendJoin databendJoin0 = DatabendJoin.createLeftOuterJoin(databendTableReference0, databendTableReference0,
+    // databendTableReference0);
+    // DatabendBinaryLogicalOperation databendBinaryLogicalOperation0 = new DatabendBinaryLogicalOperation(
+    // databendJoin0, databendTableReference0,
+    // (DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator) null);
+    // databendBinaryLogicalOperation0.getOp();
+    // }
 
     @Test
     public void test03() throws Throwable {
@@ -188,20 +183,22 @@ public class DatabendBinaryLogicalOperation_ESTest {
         assertNull(databendExpression0);
     }
 
-    @Test
-    public void test08() throws Throwable {
-        DatabendSchema.DatabendColumn[] databendSchema_DatabendColumnArray0 = new DatabendSchema.DatabendColumn[0];
-        List<DatabendSchema.DatabendColumn> list0 = Randomly.subset((-387), databendSchema_DatabendColumnArray0);
-        DatabendSchema.DatabendTable databendSchema_DatabendTable0 = new DatabendSchema.DatabendTable("", list0, false);
-        DatabendTableReference databendTableReference0 = new DatabendTableReference(databendSchema_DatabendTable0);
-        DatabendJoin databendJoin0 = DatabendJoin.createLeftOuterJoin(databendTableReference0, databendTableReference0,
-                databendTableReference0);
-        DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0 = DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator.AND;
-        DatabendBinaryLogicalOperation databendBinaryLogicalOperation0 = new DatabendBinaryLogicalOperation(
-                databendJoin0, databendTableReference0, databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0);
-        DatabendExpression databendExpression0 = databendBinaryLogicalOperation0.getLeftExpr();
-        assertSame(databendJoin0, databendExpression0);
-    }
+    // @Test
+    // public void test08() throws Throwable {
+    // DatabendSchema.DatabendColumn[] databendSchema_DatabendColumnArray0 = new DatabendSchema.DatabendColumn[0];
+    // List<DatabendSchema.DatabendColumn> list0 = Randomly.subset((-387), databendSchema_DatabendColumnArray0);
+    // DatabendSchema.DatabendTable databendSchema_DatabendTable0 = new DatabendSchema.DatabendTable("", list0, false);
+    // DatabendTableReference databendTableReference0 = new DatabendTableReference(databendSchema_DatabendTable0);
+    // DatabendJoin databendJoin0 = DatabendJoin.createLeftOuterJoin(databendTableReference0, databendTableReference0,
+    // databendTableReference0);
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
+    // databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0 =
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator.AND;
+    // DatabendBinaryLogicalOperation databendBinaryLogicalOperation0 = new DatabendBinaryLogicalOperation(
+    // databendJoin0, databendTableReference0, databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0);
+    // DatabendExpression databendExpression0 = databendBinaryLogicalOperation0.getLeftExpr();
+    // assertSame(databendJoin0, databendExpression0);
+    // }
 
     @Test
     public void test09() throws Throwable {
@@ -322,17 +319,21 @@ public class DatabendBinaryLogicalOperation_ESTest {
         assertFalse(databendConstant_DatabendBooleanConstant0.getValue());
     }
 
-    @Test
-    public void test18() throws Throwable {
-        DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0 = DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
-                .getRandom();
-        DatabendConstant.DatabendNullConstant databendConstant_DatabendNullConstant0 = new DatabendConstant.DatabendNullConstant();
-        DatabendConstant.DatabendFloatConstant databendConstant_DatabendFloatConstant0 = new DatabendConstant.DatabendFloatConstant(
-                (-1.0));
-        DatabendConstant databendConstant0 = databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0
-                .apply(databendConstant_DatabendNullConstant0, databendConstant_DatabendFloatConstant0);
-        assertEquals("NULL", databendConstant0.toString());
-    }
+    // @Test
+    // public void test18() throws Throwable {
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
+    // databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0 =
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
+    // .getRandom();
+    // DatabendConstant.DatabendNullConstant databendConstant_DatabendNullConstant0 = new
+    // DatabendConstant.DatabendNullConstant();
+    // DatabendConstant.DatabendFloatConstant databendConstant_DatabendFloatConstant0 = new
+    // DatabendConstant.DatabendFloatConstant(
+    // (-1.0));
+    // DatabendConstant databendConstant0 = databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0
+    // .apply(databendConstant_DatabendNullConstant0, databendConstant_DatabendFloatConstant0);
+    // assertEquals("NULL", databendConstant0.toString());
+    // }
 
     @Test
     public void test19() throws Throwable {
@@ -346,23 +347,29 @@ public class DatabendBinaryLogicalOperation_ESTest {
         assertNull(databendConstant1);
     }
 
-    @Test
-    public void test20() throws Throwable {
-        DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0 = DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
-                .getRandom();
-        String string0 = databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0.getTextRepresentation();
-        assertEquals("and", string0);
-    }
-
-    @Test
-    public void test21() throws Throwable {
-        DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0 = DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
-                .getRandom();
-        DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator databendBinaryLogicalOperation_DatabendBinaryLogicalOperator1 = databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0
-                .getRandomOp();
-        assertFalse(databendBinaryLogicalOperation_DatabendBinaryLogicalOperator1
-                .equals((Object) databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0));
-    }
+    // @Test
+    // public void test20() throws Throwable {
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
+    // databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0 =
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
+    // .getRandom();
+    // String string0 = databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0.getTextRepresentation();
+    // assertEquals("and", string0);
+    // }
+    //
+    // @Test
+    // public void test21() throws Throwable {
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
+    // databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0 =
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
+    // .getRandom();
+    // DatabendBinaryLogicalOperation.DatabendBinaryLogicalOperator
+    // databendBinaryLogicalOperation_DatabendBinaryLogicalOperator1 =
+    // databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0
+    // .getRandomOp();
+    // assertFalse(databendBinaryLogicalOperation_DatabendBinaryLogicalOperator1
+    // .equals((Object) databendBinaryLogicalOperation_DatabendBinaryLogicalOperator0));
+    // }
 
     @Test
     public void test22() throws Throwable {

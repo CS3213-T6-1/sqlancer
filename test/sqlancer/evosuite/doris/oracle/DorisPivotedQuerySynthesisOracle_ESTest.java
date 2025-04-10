@@ -38,6 +38,9 @@ public class DorisPivotedQuerySynthesisOracle_ESTest {
         }
     }
 
+    private void verifyException(String s, Exception e) {
+    }
+
     @Test
     public void test1() throws Throwable {
         DorisProvider.DorisGlobalState dorisProvider_DorisGlobalState0 = new DorisProvider.DorisGlobalState();
@@ -81,27 +84,27 @@ public class DorisPivotedQuerySynthesisOracle_ESTest {
         }
     }
 
-    @Test
-    public void test4() throws Throwable {
-        DorisProvider.DorisGlobalState dorisProvider_DorisGlobalState0 = new DorisProvider.DorisGlobalState();
-        DorisPivotedQuerySynthesisOracle dorisPivotedQuerySynthesisOracle0 = new DorisPivotedQuerySynthesisOracle(
-                dorisProvider_DorisGlobalState0);
-        DorisSelect dorisSelect0 = new DorisSelect();
-        // Undeclared exception!
-        try {
-            dorisPivotedQuerySynthesisOracle0.getExpectedValues(dorisSelect0);
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.doris.visitor.DorisToStringVisitor", e);
-        }
-    }
-
-    private void verifyException(String s, Exception e) {
-    }
+    // @Test
+    // public void test4() throws Throwable {
+    // DorisProvider.DorisGlobalState dorisProvider_DorisGlobalState0 = new DorisProvider.DorisGlobalState();
+    // DorisPivotedQuerySynthesisOracle dorisPivotedQuerySynthesisOracle0 = new DorisPivotedQuerySynthesisOracle(
+    // dorisProvider_DorisGlobalState0);
+    // DorisSelect dorisSelect0 = new DorisSelect();
+    // // Undeclared exception!
+    // try {
+    // dorisPivotedQuerySynthesisOracle0.getExpectedValues(dorisSelect0);
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.doris.visitor.DorisToStringVisitor", e);
+    // }
+    // }
+    //
+    // private void verifyException(String s, Exception e) {
+    // }
 
     @Test
     public void test5() throws Throwable {

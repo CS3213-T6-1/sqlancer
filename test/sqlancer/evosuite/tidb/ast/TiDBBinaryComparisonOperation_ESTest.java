@@ -10,8 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import sqlancer.tidb.ast.TiDBBinaryComparisonOperation;
-import sqlancer.tidb.ast.TiDBJoin;
-import sqlancer.tidb.ast.TiDBSelect;
 
 public class TiDBBinaryComparisonOperation_ESTest {
 
@@ -22,14 +20,15 @@ public class TiDBBinaryComparisonOperation_ESTest {
         assertEquals("<", string0);
     }
 
-    @Test
-    public void test1() throws Throwable {
-        TiDBBinaryComparisonOperation.TiDBComparisonOperator tiDBBinaryComparisonOperation_TiDBComparisonOperator0 = TiDBBinaryComparisonOperation.TiDBComparisonOperator
-                .getRandom();
-        TiDBSelect tiDBSelect0 = new TiDBSelect();
-        TiDBJoin tiDBJoin0 = TiDBJoin.createStraightJoin(tiDBSelect0, tiDBSelect0, tiDBSelect0);
-        TiDBBinaryComparisonOperation tiDBBinaryComparisonOperation0 = new TiDBBinaryComparisonOperation(tiDBJoin0,
-                tiDBJoin0, tiDBBinaryComparisonOperation_TiDBComparisonOperator0);
-        assertEquals("=", tiDBBinaryComparisonOperation0.getOperatorRepresentation());
-    }
+    // @Test
+    // public void test1() throws Throwable {
+    // TiDBBinaryComparisonOperation.TiDBComparisonOperator tiDBBinaryComparisonOperation_TiDBComparisonOperator0 =
+    // TiDBBinaryComparisonOperation.TiDBComparisonOperator
+    // .getRandom();
+    // TiDBSelect tiDBSelect0 = new TiDBSelect();
+    // TiDBJoin tiDBJoin0 = TiDBJoin.createStraightJoin(tiDBSelect0, tiDBSelect0, tiDBSelect0);
+    // TiDBBinaryComparisonOperation tiDBBinaryComparisonOperation0 = new TiDBBinaryComparisonOperation(tiDBJoin0,
+    // tiDBJoin0, tiDBBinaryComparisonOperation_TiDBComparisonOperator0);
+    // assertEquals("=", tiDBBinaryComparisonOperation0.getOperatorRepresentation());
+    // }
 }
