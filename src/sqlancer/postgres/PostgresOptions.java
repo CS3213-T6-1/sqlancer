@@ -30,6 +30,13 @@ public class PostgresOptions implements DBMSSpecificOptions<PostgresOracleFactor
     @Parameter(names = "--extensions", description = "Specifies a comma-separated list of extension names to be created in each test database", arity = 1)
     public String extensions = "";
 
+    @Parameter(names = "--use-custom-script", description = "Use a custom script to generate database tables for testing")
+    public String customScriptPath;
+
+    public String getCustomScriptPath() {
+        return customScriptPath;
+    }
+
     @Override
     public List<PostgresOracleFactory> getTestOracleFactory() {
         return oracle;
