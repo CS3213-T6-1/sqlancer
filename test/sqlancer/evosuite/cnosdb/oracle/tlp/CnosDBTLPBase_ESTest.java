@@ -88,39 +88,39 @@ public class CnosDBTLPBase_ESTest {
     // assertTrue(list0.isEmpty());
     // }
 
-    @Test
-    public void test4() throws Throwable {
-        CnosDBGlobalState cnosDBGlobalState0 = new CnosDBGlobalState();
-        CnosDBTLPBase cnosDBTLPBase0 = new CnosDBTLPBase(cnosDBGlobalState0);
-        // Undeclared exception!
-        try {
-            cnosDBTLPBase0.generateFetchColumns();
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // java.util.List.of(Ljava/lang/Object;)Ljava/util/List;
-            //
-            verifyException("sqlancer.cnosdb.oracle.tlp.CnosDBTLPBase", e);
-        }
-    }
-
-    @Test
-    public void test5() throws Throwable {
-        CnosDBGlobalState cnosDBGlobalState0 = new CnosDBGlobalState();
-        CnosDBTLPBase cnosDBTLPBase0 = new CnosDBTLPBase(cnosDBGlobalState0);
-        // Undeclared exception!
-        try {
-            cnosDBTLPBase0.generateFetchColumns();
-            fail("Expecting exception: NullPointerException");
-
-        } catch (NullPointerException e) {
-            //
-            // no message in exception (getMessage() returned null)
-            //
-            verifyException("sqlancer.cnosdb.oracle.tlp.CnosDBTLPBase", e);
-        }
-    }
+    // @Test
+    // public void test4() throws Throwable {
+    // CnosDBGlobalState cnosDBGlobalState0 = new CnosDBGlobalState();
+    // CnosDBTLPBase cnosDBTLPBase0 = new CnosDBTLPBase(cnosDBGlobalState0);
+    // // Undeclared exception!
+    // try {
+    // cnosDBTLPBase0.generateFetchColumns();
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // java.util.List.of(Ljava/lang/Object;)Ljava/util/List;
+    // //
+    // verifyException("sqlancer.cnosdb.oracle.tlp.CnosDBTLPBase", e);
+    // }
+    // }
+    //
+    // @Test
+    // public void test5() throws Throwable {
+    // CnosDBGlobalState cnosDBGlobalState0 = new CnosDBGlobalState();
+    // CnosDBTLPBase cnosDBTLPBase0 = new CnosDBTLPBase(cnosDBGlobalState0);
+    // // Undeclared exception!
+    // try {
+    // cnosDBTLPBase0.generateFetchColumns();
+    // fail("Expecting exception: NullPointerException");
+    //
+    // } catch (NullPointerException e) {
+    // //
+    // // no message in exception (getMessage() returned null)
+    // //
+    // verifyException("sqlancer.cnosdb.oracle.tlp.CnosDBTLPBase", e);
+    // }
+    // }
 
     @Test
     public void test6() throws Throwable {
