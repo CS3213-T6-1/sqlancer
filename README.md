@@ -163,3 +163,8 @@ Closely related tools:
   * On every push, the SonarQube analysis would run and the full analysis details can be accessed by the link produced in the CI. The analysis allows for the tracking of metrics like code smells, which could indicate poor design in the codebase that might require refactoring.
 * Another user story is, "As a SQLancer developer, I want to ensure new code changes don't break existing functionality."
   * We have integrated the Evosuite generated unit tests to provide a comprehensive coverage on changed code.
+* Another user story is, "As a SQLancer tester, I want to be able to mock out table creation/ query generator/oracle, so that I can test the rest of SQLancer easily."
+  * Addressing this user story, we implemented a custom table generation feature through the use of a .sql script which users can edit.
+  * We also further abstracted the table generation logic to a common generateTables method which calls generateCustomTables and generateRandomTables accordingly. This allows future developers to add support for custom tables by simply overriding and implementing the generateCustomTables method. If not implemented, generateTables defaults to generateRandomTables which is the current implementation for all DBMS.
+  * This can be achieved using specified CLI commands.
+    * Example of generating custom tables: `java -jar sqlancer-*.jar --num-threads 4 sqlite3 --oracle NoREC –use-custom-script <file_path>`​
