@@ -151,6 +151,7 @@ Closely related tools:
 * Metrics such as security, reliability and duplications issues can be calculated and pinpointed by the setup of SonarQube.
   * SonarQube has also been integrated into the CI/CD pipeline, this allows the tracking and enforcement of high cohesion and low coupling.
 * The dependency graph helps SQLancer developers to better understand the code base and any future modifications to it.
+* The unit test generated with EvoSuite helps to ensure functional reliability and code correctness after refactoring.
 ## Usage
 * A prominent user story that we identified would be “As a DuckDb/SQLite3/… tester, I want to be able to pack a SQLancer JAR containing only the dependencies of DuckDB/SQLite3, such that the JAR is more lightweight.”
   * We have included the ability to do so by making use of maven profiles, which can be specified using CLI commands. The specific database being packaged is to be specified when building SQLancer, it can be activated using the -P flag.
@@ -160,3 +161,10 @@ Closely related tools:
     * `mvn package -DskipTest -P sqlite3,duckdb`
 * Another prominent user story that could be achieved is, “As a SQLancer maintainer, I want to integrate SonarQube into the CI/CD pipeline, so that I can measure and enforce high cohesion and low coupling.”
   * On every push, the SonarQube analysis would run and the full analysis details can be accessed by the link produced in the CI. The analysis allows for the tracking of metrics like code smells, which could indicate poor design in the codebase that might require refactoring.
+* Another user story is, "As a SQLancer developer, I want to ensure new code changes don't break existing functionality."
+  * We have integrated the Evosuite generated unit tests to provide a comprehensive coverage on changed code.
+* Another user story is, "As a SQLancer tester, I want to be able to mock out table creation/ query generator/oracle, so that I can test the rest of SQLancer easily."
+  * Addressing this user story, we implemented a custom table generation feature through the use of a .sql script which users can edit.
+  * We also further abstracted the table generation logic to a common generateTables method which calls generateCustomTables and generateRandomTables accordingly. This allows future developers to add support for custom tables by simply overriding and implementing the generateCustomTables method. If not implemented, generateTables defaults to generateRandomTables which is the current implementation for all DBMS.
+  * This can be achieved using specified CLI commands.
+    * Example of generating custom tables: `java -jar sqlancer-*.jar --num-threads 4 sqlite3 --oracle NoREC –use-custom-script <file_path>`​
